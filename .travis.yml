@@ -1,15 +1,25 @@
+sudo: required
+
 language: java
 
 jdk:
-  - oraclejdk8
+  - openjdk8
+
+before_install:
+  - git update-index --chmod=+x gradlew
+  - chmod +x gradlew
 
 script:
-  - gradle build
+  - ./gradlew build
 
 deploy:
   provider: releases
   api_key:
     secure: Zb98+Ybnn0H+Dk/JNml3UL3g0RzflSQNPutc9Nm3fnep6eLMzF6bCg1zm+lHKD18L6z45GOhkiFszdT3heu99hoySayY3bE6BzLFgQQwTY6aGAR2xm94nrf4KNJuOv31uyyEzbiDjWIbW5L8XZc3OkBeF9xSoYQLNv5Jw5TyPB3O4scJt8Pq/6+EbVyXCSRJE5C+BiwGJsngQYwGR7lfqOe7adWI3AgiBhEG/zncSChA+ZBj4HfZaAmN/xpcvhTZAkr9QymfDlaNZk65hRJ4bpJH/AJ7AXgnamhWvsVmDmKYu20TIyXjKp3V/pfaTV1WNMo+lNIYz0aoaH/bwCI9dwd3WjW1eU1vn7HAD62Yv4mmPHrIXklF2xUNGgP663yJKWYc1HQPvcZmBheKGKsYON0QOkoqynfbfDvrELvDJXws7L2oAbAr7qOmM4+wXG0zdzT1jFzEz2CIJ+qmgmqgLl8Soia/TtC20e916gbof4xP3rDrt/Y4QwA45y/V3k2LfGWst0KNGTKpsuMEgOTHJ0di/W0GLpMtpyv2e0tmFBwZ4g/jhnd8fOGaxI83HTZbmUvDTdRSoSCVqDiBhPr57YWX4dH8Atuo1UU5HHzc351gBCARL1iBeTJaC2wKoW30Hbc5RPbAN/ZYSTxNiW7hJVKP4o2ho2wR7xrsI+5hv9M=
-  file: build/libs/MagicStaffs-*.jar
+  skip_cleanup: true
+  file_glob: true
+  file: build/libs/*
+  name: master-cd
+  overwrite: true
   on:
-    repo: zekroTJA/MagicStaffs
+    branch: master
