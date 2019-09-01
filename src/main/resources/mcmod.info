@@ -1,0 +1,14 @@
+[{
+  "modid": "magicstaffs",
+  "name": "Magic Staffs",
+  "description": "Add staffs.",
+  "version": "${version}",
+  "mcversion": "${mcversion}",
+  "url": "",
+  "updateUrl": "",
+  "authorList": ["zekro"],
+  "credits": "© 2019 zekro Development (Ringo Hoffmann)",
+  "logoFile": "",
+  "screenshots": [],
+  "dependencies": []
+}]
