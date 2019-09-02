@@ -20,7 +20,7 @@ public class MagicStaffs {
     public static final String NAME = "Magic Staffs";
     public static final String VERSION = "0.1";
 
-    public static final ArrayList<Item> ITEMS = new ArrayList<Item>();
+    public static final ArrayList<Item> ITEMS = new ArrayList<>();
 
     public static final CreativeTab CREATIVE_TAB = new CreativeTab("magic_staffs");
 

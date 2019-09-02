@@ -13,6 +13,7 @@ import net.minecraft.item.ItemStack;
 import net.minecraft.util.ActionResult;
 import net.minecraft.util.EnumActionResult;
 import net.minecraft.util.EnumHand;
+import net.minecraft.util.SoundCategory;
 import net.minecraft.util.math.Vec3d;
 import net.minecraft.world.World;
 
@@ -26,25 +27,32 @@ public class ElectricStaff extends GenericStaff {
 
     @Override
     public ActionResult<ItemStack> onItemRightClick(World world, EntityPlayer player, EnumHand hand) {
-        ItemStack itemInstance = player.getHeldItem(hand);
+        ItemStack itemStack = player.getHeldItem(hand);
         Vec3d aim = Vec3dUtils.multiply(player.getLookVec(), ACCELERATION);
 
-        if (!checkActionCoolDown(world)) {
-            return new ActionResult<>(EnumActionResult.FAIL, itemInstance);
-        }
+        if (world.isRemote) {
+            if (!coolDownServer.take(world))
+                return super.onItemRightClick(world, player, hand);
 
-        // TODO: Play custom sound
-        player.addVelocity(aim.x, aim.y, aim.z);
+            // TODO: Play custom sound
+            player.addVelocity(aim.x, aim.y, aim.z);
 
-        if (!player.isCreative()) {
-            player.fallDistance = 0;
+            if (getMaxDamage(itemStack) == itemStack.getItemDamage())
+                world.playSound(
+                        player, player.posX, player.posY, player.posZ,
+                        SoundEvents.ENTITY_ITEM_BREAK, SoundCategory.PLAYERS,
+                        1F, 1F);
+        } else {
+            if (player.isCreative() || !coolDownClient.take(world))
+                return super.onItemRightClick(world, player, hand);
 
-            if (itemInstance.getMaxDamage() == itemInstance.getItemDamage()) {
-                player.playSound(SoundEvents.ENTITY_ITEM_BREAK, 1, 1);
-                return new ActionResult<>(EnumActionResult.PASS, ItemStack.EMPTY);
-            }
+            if (getMaxDamage(itemStack) == itemStack.getItemDamage())
+                return new ActionResult<>(EnumActionResult.SUCCESS, ItemStack.EMPTY);
 
-            itemInstance.setItemDamage(itemInstance.getItemDamage() + 1);
+            player.fallDistance = 0F;
+            setDamage(itemStack, itemStack.getItemDamage() + 1);
+
+            return new ActionResult<>(EnumActionResult.SUCCESS, itemStack);
         }
 
         return super.onItemRightClick(world, player, hand);
