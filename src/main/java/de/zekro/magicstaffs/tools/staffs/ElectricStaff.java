@@ -39,9 +39,9 @@ public class ElectricStaff extends GenericStaff {
 
             if (getMaxDamage(itemStack) == itemStack.getItemDamage())
                 world.playSound(
-                        player, player.posX, player.posY, player.posZ,
-                        SoundEvents.ENTITY_ITEM_BREAK, SoundCategory.PLAYERS,
-                        1F, 1F);
+                    player, player.posX, player.posY, player.posZ,
+                    SoundEvents.ENTITY_ITEM_BREAK, SoundCategory.PLAYERS,
+                    1F, 1F);
         } else {
             if (player.isCreative() || !coolDownClient.take(world))
                 return super.onItemRightClick(world, player, hand);

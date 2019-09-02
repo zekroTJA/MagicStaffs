@@ -2,6 +2,7 @@ package de.zekro.magicstaffs.handlers;
 
 import de.zekro.magicstaffs.MagicStaffs;
 import de.zekro.magicstaffs.items.IHasModel;
+import net.minecraft.block.Block;
 import net.minecraft.item.Item;
 import net.minecraftforge.client.event.ModelRegistryEvent;
 import net.minecraftforge.event.RegistryEvent;
@@ -24,16 +25,25 @@ public class RegistryHandler {
         event.getRegistry().registerAll(MagicStaffs.ITEMS.toArray(new Item[0]));
     }
 
+    @SubscribeEvent
+    public static void onBlockRegister(RegistryEvent.Register<Block> event) {
+        event.getRegistry().registerAll(MagicStaffs.BLOCKS.toArray(new Block[0]));
+    }
+
     /**
      * Automatically register models on ModelRegistryEvent.
      * @param event model registry event
      */
     @SubscribeEvent
     public static void onModelRegister(ModelRegistryEvent event) {
-        MagicStaffs.ITEMS.forEach(item -> {
-            if (item instanceof IHasModel) {
-                ((IHasModel) item).registerModels();
-            }
-        });
+        MagicStaffs.ITEMS
+                .stream()
+                .filter(item -> item instanceof IHasModel)
+                .forEach(item ->  ((IHasModel) item).registerModels());
+
+        MagicStaffs.BLOCKS
+                .stream()
+                .filter(item -> item instanceof IHasModel)
+                .forEach(item ->  ((IHasModel) item).registerModels());
     }
 }
