@@ -6,6 +6,7 @@ import de.zekro.magicstaffs.items.ItemBase;
 import de.zekro.magicstaffs.tools.GenericStaff;
 import de.zekro.magicstaffs.util.Vec3dUtils;
 import net.minecraft.client.audio.Sound;
+import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.init.SoundEvents;
 import net.minecraft.item.ItemStack;
@@ -19,14 +20,18 @@ public class ElectricStaff extends GenericStaff {
 
     private static final double ACCELERATION = 1.75;
 
-    public ElectricStaff(String name) {
-        super(name);
+    public ElectricStaff(String name, CreativeTabs tabs) {
+        super(name, tabs);
     }
 
     @Override
     public ActionResult<ItemStack> onItemRightClick(World world, EntityPlayer player, EnumHand hand) {
         ItemStack itemInstance = player.getHeldItem(hand);
         Vec3d aim = Vec3dUtils.multiply(player.getLookVec(), ACCELERATION);
+
+        if (!checkActionCoolDown(world)) {
+            return new ActionResult<>(EnumActionResult.FAIL, itemInstance);
+        }
 
         // TODO: Play custom sound
         player.addVelocity(aim.x, aim.y, aim.z);
