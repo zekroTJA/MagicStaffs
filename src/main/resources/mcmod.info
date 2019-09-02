@@ -1,13 +1,13 @@
 [{
   "modid": "magicstaffs",
   "name": "Magic Staffs",
-  "description": "Add staffs.",
+  "description": "Magic Staffs adds magical staffs.",
   "version": "${version}",
   "mcversion": "${mcversion}",
-  "url": "",
-  "updateUrl": "",
-  "authorList": ["zekro"],
-  "credits": "© 2019 zekro Development (Ringo Hoffmann)",
+  "url": "https://github.com/zekroTJA/MagicStaffs",
+  "updateUrl": "https://github.com/zekroTJA/MagicStaffs/releases",
+  "authorList": ["zekro", "luxtracon"],
+  "credits": "Development by zekro (zekro.de). Textures and graphics by luxtracon (@luxtracon). © 2019 zekro Development (Ringo Hoffmann)",
   "logoFile": "",
   "screenshots": [],
   "dependencies": []
