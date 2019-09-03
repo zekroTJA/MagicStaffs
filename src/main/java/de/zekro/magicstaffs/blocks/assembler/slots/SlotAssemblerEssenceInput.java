@@ -1,20 +1,18 @@
 package de.zekro.magicstaffs.blocks.assembler.slots;
 
+import de.zekro.magicstaffs.items.IEssence;
 import net.minecraft.inventory.IInventory;
 import net.minecraft.inventory.Slot;
 import net.minecraft.item.ItemStack;
-import net.minecraftforge.items.IItemHandler;
-import net.minecraftforge.items.SlotItemHandler;
 
-public class SlotAssemblerEssenceInput extends SlotItemHandler {
+public class SlotAssemblerEssenceInput extends Slot {
 
-    public SlotAssemblerEssenceInput(IItemHandler itemHandler, int index, int xPosition, int yPosition) {
-        super(itemHandler, index, xPosition, yPosition);
+    public SlotAssemblerEssenceInput(IInventory inventoryIn, int index, int xPosition, int yPosition) {
+        super(inventoryIn, index, xPosition, yPosition);
     }
 
     @Override
     public boolean isItemValid(ItemStack stack) {
-        // TODO: Check if item is type of staff essence.
-        return super.isItemValid(stack);
+        return stack.getItem() instanceof IEssence;
     }
 }

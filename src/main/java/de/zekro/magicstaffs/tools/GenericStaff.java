@@ -12,7 +12,7 @@ import net.minecraft.util.CooldownTracker;
 import net.minecraft.util.EnumHand;
 import net.minecraft.world.World;
 
-public class GenericStaff extends ItemBase implements IHasModel {
+public class GenericStaff extends ItemBase {
 
     private long lastAction;
     private static final long DEFAULT_ACTION_COOL_DOWN = 10;
@@ -26,11 +26,6 @@ public class GenericStaff extends ItemBase implements IHasModel {
         super(name, tabs);
         setMaxDamage(5);
         setMaxStackSize(1);
-    }
-
-    @Override
-    public void registerModels() {
-        MagicStaffs.proxy.registerModel(this, 0);
     }
 
     @Override

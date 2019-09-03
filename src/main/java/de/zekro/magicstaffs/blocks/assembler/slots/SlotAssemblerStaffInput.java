@@ -1,20 +1,19 @@
 package de.zekro.magicstaffs.blocks.assembler.slots;
 
+import de.zekro.magicstaffs.items.IBaseStaff;
 import net.minecraft.inventory.IInventory;
 import net.minecraft.inventory.Slot;
 import net.minecraft.item.ItemStack;
-import net.minecraftforge.items.IItemHandler;
-import net.minecraftforge.items.SlotItemHandler;
 
-public class SlotAssemblerStaffInput extends SlotItemHandler {
+public class SlotAssemblerStaffInput extends Slot {
 
-    public SlotAssemblerStaffInput(IItemHandler handler, int index, int x, int y) {
-        super(handler, index, x, y);
+
+    public SlotAssemblerStaffInput(IInventory inventoryIn, int index, int xPosition, int yPosition) {
+        super(inventoryIn, index, xPosition, yPosition);
     }
 
     @Override
     public boolean isItemValid(ItemStack stack) {
-        // TODO: Check if item is a base staff
-        return super.isItemValid(stack);
+        return stack.getItem() instanceof IBaseStaff;
     }
 }

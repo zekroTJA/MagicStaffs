@@ -16,18 +16,11 @@ import net.minecraft.util.EnumHand;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
 
-import javax.annotation.Nullable;
+public class BlockAssembler extends BlockBase implements ITileEntityProvider {
 
-public class Assembler extends BlockBase implements IHasModel, ITileEntityProvider {
-
-    public Assembler(String name, CreativeTabs tabs) {
+    public BlockAssembler(String name, CreativeTabs tabs) {
         super(name, Material.ROCK, tabs);
         fullBlock = false;
-    }
-
-    @Override
-    public void registerModels() {
-        MagicStaffs.proxy.registerModel(Item.getItemFromBlock(this), 0);
     }
 
     @Override

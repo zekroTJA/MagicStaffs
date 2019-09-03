@@ -1,9 +1,10 @@
 package de.zekro.magicstaffs;
 
-import de.zekro.magicstaffs.blocks.assembler.Assembler;
+import de.zekro.magicstaffs.blocks.assembler.BlockAssembler;
 import de.zekro.magicstaffs.creativetab.CreativeTab;
-import de.zekro.magicstaffs.handlers.GuiHandler;
 import de.zekro.magicstaffs.handlers.RegistryHandler;
+import de.zekro.magicstaffs.items.essences.ElectricEssence;
+import de.zekro.magicstaffs.items.staffs.BaseStaff;
 import de.zekro.magicstaffs.proxy.CommonProxy;
 import de.zekro.magicstaffs.tools.staffs.ElectricStaff;
 import net.minecraft.block.Block;
@@ -12,9 +13,7 @@ import net.minecraft.item.ItemStack;
 import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.common.Mod.EventHandler;
 import net.minecraftforge.fml.common.SidedProxy;
-import net.minecraftforge.fml.common.event.FMLInitializationEvent;
 import net.minecraftforge.fml.common.event.FMLPreInitializationEvent;
-import net.minecraftforge.fml.common.network.NetworkRegistry;
 
 import java.util.ArrayList;
 
@@ -33,9 +32,11 @@ public class MagicStaffs {
 
     // ITEMS
     public static final Item ELECTRIC_STAFF = new ElectricStaff("electric_staff", CREATIVE_TAB);
+    public static final Item BASE_STAFF = new BaseStaff("base_staff", CREATIVE_TAB);
+    public static final Item ELECTRIC_ESSENCE = new ElectricEssence("electric_essence", CREATIVE_TAB);
 
     // BLOCKS
-    public static final Block ASSEMBLER = new Assembler("assembler", CREATIVE_TAB);
+    public static final Block ASSEMBLER = new BlockAssembler("assembler", CREATIVE_TAB);
 
     public MagicStaffs() {
         CREATIVE_TAB.setTabIconItem(new ItemStack(ELECTRIC_STAFF));

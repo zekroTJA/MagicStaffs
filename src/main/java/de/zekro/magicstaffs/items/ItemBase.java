@@ -9,7 +9,7 @@ import net.minecraft.item.Item;
  * name, registry name and creative tab. The Item instance
  * is then added to the item registry list.
  */
-public class ItemBase extends Item {
+public class ItemBase extends Item implements IHasModel {
 
     /**
      * Create instance of ItemBase.
@@ -35,5 +35,10 @@ public class ItemBase extends Item {
         setCreativeTab(tabs != null ? tabs : CreativeTabs.MISC);
 
         MagicStaffs.ITEMS.add(this);
+    }
+
+    @Override
+    public void registerModels() {
+        MagicStaffs.proxy.registerModel(this, 0);
     }
 }

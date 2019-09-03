@@ -1,7 +1,13 @@
+# Creative Tabs
 itemGroup.magic_staffs=Magic Staffs
 
+# Items
+item.base_staff.name=Staff
 item.electric_staff.name=Electric Staff
+item.electric_essence.name=Electric Essence
 
+# Blocks
 tile.assembler.name=Assembler
 
+# Containers
 container.assembler=Assembler
