@@ -8,6 +8,7 @@ import net.minecraftforge.client.event.ModelRegistryEvent;
 import net.minecraftforge.event.RegistryEvent;
 import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
+import net.minecraftforge.fml.common.network.NetworkRegistry;
 
 /**
  * Handles automatic registration of items on Forge
@@ -15,6 +16,10 @@ import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
  */
 @Mod.EventBusSubscriber
 public class RegistryHandler {
+
+    public static void initRegistries() {
+        NetworkRegistry.INSTANCE.registerGuiHandler(MagicStaffs.instance, new GuiHandler());
+    }
 
     /**
      * Automatically register items on Register&lt;Item&gt; event.
@@ -28,6 +33,7 @@ public class RegistryHandler {
     @SubscribeEvent
     public static void onBlockRegister(RegistryEvent.Register<Block> event) {
         event.getRegistry().registerAll(MagicStaffs.BLOCKS.toArray(new Block[0]));
+        TileEntityHandler.registerTileEntities();
     }
 
     /**
@@ -39,11 +45,11 @@ public class RegistryHandler {
         MagicStaffs.ITEMS
                 .stream()
                 .filter(item -> item instanceof IHasModel)
-                .forEach(item ->  ((IHasModel) item).registerModels());
+                .forEach(item -> ((IHasModel) item).registerModels());
 
         MagicStaffs.BLOCKS
                 .stream()
                 .filter(item -> item instanceof IHasModel)
-                .forEach(item ->  ((IHasModel) item).registerModels());
+                .forEach(item -> ((IHasModel) item).registerModels());
     }
 }

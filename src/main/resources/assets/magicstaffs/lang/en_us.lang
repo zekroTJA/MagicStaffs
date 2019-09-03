@@ -3,3 +3,5 @@ itemGroup.magic_staffs=Magic Staffs
 item.electric_staff.name=Electric Staff
 
 tile.assembler.name=Assembler
+
+container.assembler=Assembler
