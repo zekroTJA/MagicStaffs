@@ -7,7 +7,7 @@ item.electric_staff.name=Electric Staff
 item.electric_essence.name=Electric Essence
 
 # Blocks
-tile.assembler.name=Assembler
+tile.infuser.name=Infusion Table
 
 # Containers
-container.assembler=Assembler
+container.infuser=Infusion Table

@@ -1,7 +1,7 @@
 {
   "variants": {
     "normal": {
-      "model": "magicstaffs:assembler"
+      "model": "magicstaffs:infuser"
     }
   }
 }

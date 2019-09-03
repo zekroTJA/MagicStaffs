@@ -1,21 +1,21 @@
 package de.zekro.magicstaffs.gui;
 
 import de.zekro.magicstaffs.MagicStaffs;
-import de.zekro.magicstaffs.blocks.assembler.ContainerAssembler;
-import de.zekro.magicstaffs.blocks.assembler.TileEntityAssembler;
+import de.zekro.magicstaffs.blocks.infuser.ContainerInfuser;
+import de.zekro.magicstaffs.blocks.infuser.TileEntityInfuser;
 import net.minecraft.client.gui.inventory.GuiContainer;
 import net.minecraft.client.renderer.GlStateManager;
 import net.minecraft.entity.player.InventoryPlayer;
 import net.minecraft.util.ResourceLocation;
 
-public class GuiAssembler extends GuiContainer {
+public class GuiInfuser extends GuiContainer {
 
-    private static final ResourceLocation TEXTURE = new ResourceLocation(MagicStaffs.MOD_ID, "textures/gui/assembler.png");
+    private static final ResourceLocation TEXTURE = new ResourceLocation(MagicStaffs.MOD_ID, "textures/gui/infuser.png");
     private final InventoryPlayer player;
-    private final TileEntityAssembler entity;
+    private final TileEntityInfuser entity;
 
-    public GuiAssembler(InventoryPlayer player, TileEntityAssembler entity) {
-        super(new ContainerAssembler(player, entity));
+    public GuiInfuser(InventoryPlayer player, TileEntityInfuser entity) {
+        super(new ContainerInfuser(player, entity));
         this.player = player;
         this.entity = entity;
 

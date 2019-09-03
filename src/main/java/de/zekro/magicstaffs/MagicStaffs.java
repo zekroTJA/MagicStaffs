@@ -1,6 +1,6 @@
 package de.zekro.magicstaffs;
 
-import de.zekro.magicstaffs.blocks.assembler.BlockAssembler;
+import de.zekro.magicstaffs.blocks.infuser.BlockInfuser;
 import de.zekro.magicstaffs.creativetab.CreativeTab;
 import de.zekro.magicstaffs.handlers.RegistryHandler;
 import de.zekro.magicstaffs.items.essences.ElectricEssence;
@@ -36,7 +36,7 @@ public class MagicStaffs {
     public static final Item ELECTRIC_ESSENCE = new ElectricEssence("electric_essence", CREATIVE_TAB);
 
     // BLOCKS
-    public static final Block ASSEMBLER = new BlockAssembler("assembler", CREATIVE_TAB);
+    public static final Block INFUSER = new BlockInfuser("infuser", CREATIVE_TAB);
 
     public MagicStaffs() {
         CREATIVE_TAB.setTabIconItem(new ItemStack(ELECTRIC_STAFF));

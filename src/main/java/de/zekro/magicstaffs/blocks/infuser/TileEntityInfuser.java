@@ -1,4 +1,4 @@
-package de.zekro.magicstaffs.blocks.assembler;
+package de.zekro.magicstaffs.blocks.infuser;
 
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.nbt.NBTTagCompound;
@@ -11,7 +11,7 @@ import net.minecraftforge.common.capabilities.Capability;
 import net.minecraftforge.items.CapabilityItemHandler;
 import net.minecraftforge.items.ItemStackHandler;
 
-public class TileEntityAssembler extends TileEntity {
+public class TileEntityInfuser extends TileEntity {
 
     private ItemStackHandler handler = new ItemStackHandler(3);
     private String customName;
@@ -39,7 +39,7 @@ public class TileEntityAssembler extends TileEntity {
 
     @Override
     public ITextComponent getDisplayName() {
-        return this.hasCustomName() ? new TextComponentString(this.customName) : new TextComponentTranslation("container.assembler");
+        return this.hasCustomName() ? new TextComponentString(this.customName) : new TextComponentTranslation("container.infuser");
     }
 
     @Override

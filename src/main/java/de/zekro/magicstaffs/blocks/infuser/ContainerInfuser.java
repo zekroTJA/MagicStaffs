@@ -1,12 +1,11 @@
-package de.zekro.magicstaffs.blocks.assembler;
+package de.zekro.magicstaffs.blocks.infuser;
 
 import de.zekro.magicstaffs.MagicStaffs;
-import de.zekro.magicstaffs.blocks.assembler.slots.SlotAssemblerEssenceInput;
-import de.zekro.magicstaffs.blocks.assembler.slots.SlotAssemblerOutput;
-import de.zekro.magicstaffs.blocks.assembler.slots.SlotAssemblerStaffInput;
+import de.zekro.magicstaffs.blocks.infuser.slots.SlotInfuserEssenceInput;
+import de.zekro.magicstaffs.blocks.infuser.slots.SlotInfuserOutput;
+import de.zekro.magicstaffs.blocks.infuser.slots.SlotInfuserStaffInput;
 import de.zekro.magicstaffs.items.essences.ElectricEssence;
 import de.zekro.magicstaffs.items.staffs.BaseStaff;
-import de.zekro.magicstaffs.tools.staffs.ElectricStaff;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.entity.player.InventoryPlayer;
 import net.minecraft.inventory.*;
@@ -15,20 +14,20 @@ import net.minecraft.world.World;
 import net.minecraftforge.items.CapabilityItemHandler;
 import net.minecraftforge.items.IItemHandler;
 
-public class ContainerAssembler extends Container {
-    private final TileEntityAssembler entity;
+public class ContainerInfuser extends Container {
+    private final TileEntityInfuser entity;
     private final InventoryCraftResult result = new InventoryCraftResult();
     private World world;
     public InventoryCrafting craftMatrix = new InventoryCrafting(this, 2, 1);
 
-    public ContainerAssembler(InventoryPlayer player, TileEntityAssembler entity) {
+    public ContainerInfuser(InventoryPlayer player, TileEntityInfuser entity) {
         world = player.player.getEntityWorld();
         this.entity = entity;
         IItemHandler handler = entity.getCapability(CapabilityItemHandler.ITEM_HANDLER_CAPABILITY, null);
 
-        addSlotToContainer(new SlotAssemblerStaffInput(craftMatrix, 0, 27, 33));
-        addSlotToContainer(new SlotAssemblerEssenceInput(craftMatrix, 1, 57, 33));
-        addSlotToContainer(new SlotAssemblerOutput(player.player, craftMatrix, result, 2, 127, 33));
+        addSlotToContainer(new SlotInfuserStaffInput(craftMatrix, 0, 27, 33));
+        addSlotToContainer(new SlotInfuserEssenceInput(craftMatrix, 1, 57, 33));
+        addSlotToContainer(new SlotInfuserOutput(player.player, craftMatrix, result, 2, 127, 33));
 
         // Inventory
         for (int y = 0; y < 3; ++y) {
@@ -45,9 +44,11 @@ public class ContainerAssembler extends Container {
         onCraftMatrixChanged(craftMatrix);
     }
 
-    public void onCraftMatrixChanged(IInventory iiventory) {
+    public void onCraftMatrixChanged(IInventory inventory) {
         // TODO: Replace this test recipe setup with proper
         //       external recipe management class handler.
+        // TODO: Remove result item after one of the both recipe
+        //       items was removed.
         if (craftMatrix.getStackInSlot(0).getItem() instanceof BaseStaff &&
             craftMatrix.getStackInSlot(1).getItem() instanceof ElectricEssence) {
 
