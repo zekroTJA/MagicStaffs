@@ -6,6 +6,7 @@ import de.zekro.magicstaffs.blocks.assembler.slots.SlotAssemblerStaffInput;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.entity.player.InventoryPlayer;
 import net.minecraft.inventory.Container;
+import net.minecraft.inventory.ItemStackHelper;
 import net.minecraft.inventory.Slot;
 import net.minecraft.item.ItemStack;
 import net.minecraftforge.items.CapabilityItemHandler;
@@ -46,8 +47,30 @@ public class ContainerAssembler extends Container {
     }
 
     @Override
-    public void onContainerClosed(EntityPlayer playerIn) {
-        System.out.println("CONTAINER CLOSED");
-        super.onContainerClosed(playerIn);
+    public ItemStack transferStackInSlot(EntityPlayer playerIn, int index) {
+        ItemStack stack = ItemStack.EMPTY;
+        Slot slot = inventorySlots.get(index);
+
+        if (slot != null && slot.getHasStack()) {
+
+            ItemStack currStack = slot.getStack();
+            stack = currStack.copy();
+
+            if (index < 3) {
+                if (!mergeItemStack(currStack, 3, 39, true))
+                    return ItemStack.EMPTY;
+                slot.onSlotChange(currStack, stack);
+            } else {
+                for (int i = 0; i < 2; ++i) {
+                   Slot currSlot = inventorySlots.get(i);
+                   if (currSlot.isItemValid(currStack) && mergeItemStack(currStack, i, i + 1, false)) {
+                       return stack;
+                   }
+                }
+                return ItemStack.EMPTY;
+            }
+        }
+
+        return stack;
     }
 }
