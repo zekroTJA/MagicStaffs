@@ -17,6 +17,7 @@ before_deploy:
   - git fetch --tags
   - git tag cd-master --delete || true
   - git tag cd-master
+  - git push --tags
 
 deploy:
   provider: releases
