@@ -4,12 +4,13 @@ import de.zekro.magicstaffs.items.ItemBase;
 import de.zekro.magicstaffs.util.CoolDown;
 import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.entity.player.EntityPlayer;
+import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.ActionResult;
 import net.minecraft.util.EnumHand;
 import net.minecraft.world.World;
 
-public class GenericStaff extends ItemBase {
+public abstract class GenericStaff extends ItemBase {
 
     private static final long DEFAULT_ACTION_COOL_DOWN = 10;
 
@@ -26,4 +27,6 @@ public class GenericStaff extends ItemBase {
     public ActionResult<ItemStack> onItemRightClick(World world, EntityPlayer player, EnumHand hand) {
         return super.onItemRightClick(world, player, hand);
     }
+
+    public abstract Item getEssenceMadeOf();
 }
