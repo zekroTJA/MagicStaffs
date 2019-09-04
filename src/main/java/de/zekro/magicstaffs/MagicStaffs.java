@@ -6,6 +6,7 @@ import de.zekro.magicstaffs.handlers.RegistryHandler;
 import de.zekro.magicstaffs.items.essences.ElectricEssence;
 import de.zekro.magicstaffs.items.staffs.BaseStaff;
 import de.zekro.magicstaffs.proxy.CommonProxy;
+import de.zekro.magicstaffs.tools.GenericStaff;
 import de.zekro.magicstaffs.tools.staffs.ElectricStaff;
 import net.minecraft.block.Block;
 import net.minecraft.item.Item;
@@ -31,7 +32,7 @@ public class MagicStaffs {
     public static final CreativeTab CREATIVE_TAB = new CreativeTab("magic_staffs");
 
     // ITEMS
-    public static final Item ELECTRIC_STAFF = new ElectricStaff("electric_staff", CREATIVE_TAB);
+    public static final GenericStaff ELECTRIC_STAFF = new ElectricStaff("electric_staff", CREATIVE_TAB);
     public static final Item BASE_STAFF = new BaseStaff("base_staff", CREATIVE_TAB);
     public static final Item ELECTRIC_ESSENCE = new ElectricEssence("electric_essence", CREATIVE_TAB);
 

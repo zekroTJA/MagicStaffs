@@ -1,14 +1,12 @@
 package de.zekro.magicstaffs.tools.staffs;
 
 import de.zekro.magicstaffs.MagicStaffs;
-import de.zekro.magicstaffs.items.IHasModel;
-import de.zekro.magicstaffs.items.ItemBase;
 import de.zekro.magicstaffs.tools.GenericStaff;
 import de.zekro.magicstaffs.util.Vec3dUtils;
-import net.minecraft.client.audio.Sound;
 import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.init.SoundEvents;
+import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.ActionResult;
 import net.minecraft.util.EnumActionResult;
@@ -56,5 +54,9 @@ public class ElectricStaff extends GenericStaff {
         }
 
         return super.onItemRightClick(world, player, hand);
+    }
+
+    public Item getEssenceMadeOf() {
+        return MagicStaffs.ELECTRIC_ESSENCE;
     }
 }

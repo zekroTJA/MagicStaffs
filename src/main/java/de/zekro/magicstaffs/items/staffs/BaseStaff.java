@@ -10,7 +10,8 @@ public class BaseStaff extends ItemBase implements IBaseStaff, IHasModel {
 
     public BaseStaff(String name, CreativeTabs tabs) {
         super(name, tabs);
-        setMaxStackSize(1);
+        // TODO: Set stackSize(1)
+//        setMaxStackSize(1);
     }
 
     @Override
