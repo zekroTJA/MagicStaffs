@@ -13,6 +13,10 @@ before_install:
 script:
   - ./gradlew build
 
+before_deploy:
+  - git tags cd-master --delete || true
+  - git tag cd-master
+
 deploy:
   provider: releases
   api_key:
@@ -22,5 +26,6 @@ deploy:
   file: build/libs/*
   name: master-cd
   overwrite: true
+  tag: cd-master
   on:
     branch: master
