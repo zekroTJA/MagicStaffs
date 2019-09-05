@@ -10,17 +10,21 @@ import java.io.File;
 import java.util.ArrayList;
 import java.util.List;
 
+/**
+ * Handler managing mod configuration initialization.
+ */
 public class ConfigHandler {
-
-    public static Configuration mainConfig;
 
     public static int GUI_INFUSER = 0;
 
-    public static double ELECTRIC_STAFF_ACCELERATION = 1.75f;
-    public static int ELECTRIC_STAFF_DURABILITY = 64;
-
-    public static void init(File mainConfigFile, List<Tuple<GenericStaff, File>> staffPropertyConfigs) {
-        mainConfig = new Configuration(mainConfigFile);
+    /**
+     * Initialize configuration instances for main configuration
+     * and staff configurations.
+     * @param mainConfigFile main config file handler
+     * @param staffPropertyConfigs tuple list of staff configuration instances
+     */
+    private static void init(File mainConfigFile, List<Tuple<GenericStaff, File>> staffPropertyConfigs) {
+        Configuration mainConfig = new Configuration(mainConfigFile);
 
         String category;
 
@@ -32,28 +36,19 @@ public class ConfigHandler {
                 "ID for the Infusion Table main GUI."
         );
 
-//        // STAFFS
-//        category = "staffs";
-//        mainConfig.addCustomCategoryComment(category, "Set properties for staffs.");
-//
-//        // ELECTRIC STAFF
-//        ELECTRIC_STAFF_ACCELERATION = mainConfig.getFloat(
-//                "electric_staff_acceleration", category, 1.75f, 0f, 100f,
-//                "The acceleration amount on Electric Staff action."
-//        );
-//        ELECTRIC_STAFF_DURABILITY = mainConfig.getInt(
-//                "electric_staff_durability",
-//                category, 64, 1, Integer.MAX_VALUE,
-//                "The usage durability of an Electric Staff."
-//        );
-
         staffPropertyConfigs.forEach(tp ->
                 initStaffConfig(tp.getSecond(), tp.getFirst()));
 
         mainConfig.save();
     }
 
-    public static void initStaffConfig(File file, GenericStaff staff) {
+    /**
+     * Initialize staff configuration for a staff item instance
+     * and set configuration values to staff.
+     * @param file configuration file handler
+     * @param staff staff item instance
+     */
+    private static void initStaffConfig(File file, GenericStaff staff) {
         final String cat = "properties";
         Configuration cfg = new Configuration(file);
 
@@ -77,7 +72,12 @@ public class ConfigHandler {
         cfg.save();
     }
 
-    public static List<GenericStaff> getRegisteredStaffs() {
+    /**
+     * Returns a list of staffs extending the
+     * GenericStaff class.
+     * @return list of staffs
+     */
+    private static List<GenericStaff> getRegisteredStaffs() {
         ArrayList<GenericStaff> staffs = new ArrayList();
         MagicStaffs.ITEMS
                 .stream()
@@ -86,6 +86,11 @@ public class ConfigHandler {
         return staffs;
     }
 
+    /**
+     * Create config locations and initialize
+     * main config and staff configurations.
+     * @param event
+     */
     public static void registerConfig(FMLPreInitializationEvent event) {
         File mainConfigLocation = new File(event.getModConfigurationDirectory() + "/" + MagicStaffs.MOD_ID);
         File staffsConfigLocation = new File(mainConfigLocation.getPath() + "/staff_properties");

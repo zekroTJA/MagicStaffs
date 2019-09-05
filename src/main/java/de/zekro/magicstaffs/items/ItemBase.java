@@ -28,6 +28,13 @@ public class ItemBase extends Item implements IHasModel {
         registerItem(name, tabs);
     }
 
+    /**
+     * Register unlocalized name, registry name and
+     * set creative tab as same as add item to item
+     * registration list.
+     * @param name
+     * @param tabs
+     */
     private void registerItem(String name, CreativeTabs tabs) {
         setUnlocalizedName(name);
         setRegistryName(name);

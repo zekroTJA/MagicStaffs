@@ -9,7 +9,12 @@ import net.minecraftforge.fml.common.registry.GameRegistry;
  * Block Tile Entity Handler.
  */
 public class TileEntityHandler {
+
+    /**
+     * Register tile entities.
+     */
     public static void registerTileEntities() {
         GameRegistry.registerTileEntity(TileEntityInfuser.class, new ResourceLocation(MagicStaffs.MOD_ID, "infuser"));
     }
+
 }
