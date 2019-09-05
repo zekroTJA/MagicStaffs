@@ -10,14 +10,21 @@ import java.io.File;
 import java.util.ArrayList;
 import java.util.List;
 
+/**
+ * Handler managing mod configuration initialization.
+ */
 public class ConfigHandler {
-
-    public static Configuration mainConfig;
 
     public static int GUI_INFUSER = 0;
 
-    public static void init(File mainConfigFile, List<Tuple<GenericStaff, File>> staffPropertyConfigs) {
-        mainConfig = new Configuration(mainConfigFile);
+    /**
+     * Initialize configuration instances for main configuration
+     * and staff configurations.
+     * @param mainConfigFile main config file handler
+     * @param staffPropertyConfigs tuple list of staff configuration instances
+     */
+    private static void init(File mainConfigFile, List<Tuple<GenericStaff, File>> staffPropertyConfigs) {
+        Configuration mainConfig = new Configuration(mainConfigFile);
 
         String category;
 
@@ -35,7 +42,13 @@ public class ConfigHandler {
         mainConfig.save();
     }
 
-    public static void initStaffConfig(File file, GenericStaff staff) {
+    /**
+     * Initialize staff configuration for a staff item instance
+     * and set configuration values to staff.
+     * @param file configuration file handler
+     * @param staff staff item instance
+     */
+    private static void initStaffConfig(File file, GenericStaff staff) {
         final String cat = "properties";
         Configuration cfg = new Configuration(file);
 
@@ -59,7 +72,12 @@ public class ConfigHandler {
         cfg.save();
     }
 
-    public static List<GenericStaff> getRegisteredStaffs() {
+    /**
+     * Returns a list of staffs extending the
+     * GenericStaff class.
+     * @return list of staffs
+     */
+    private static List<GenericStaff> getRegisteredStaffs() {
         ArrayList<GenericStaff> staffs = new ArrayList();
         MagicStaffs.ITEMS
                 .stream()
@@ -68,6 +86,11 @@ public class ConfigHandler {
         return staffs;
     }
 
+    /**
+     * Create config locations and initialize
+     * main config and staff configurations.
+     * @param event
+     */
     public static void registerConfig(FMLPreInitializationEvent event) {
         File mainConfigLocation = new File(event.getModConfigurationDirectory() + "/" + MagicStaffs.MOD_ID);
         File staffsConfigLocation = new File(mainConfigLocation.getPath() + "/staff_properties");

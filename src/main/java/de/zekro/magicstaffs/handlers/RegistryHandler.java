@@ -18,10 +18,17 @@ import net.minecraftforge.fml.common.network.NetworkRegistry;
 @Mod.EventBusSubscriber
 public class RegistryHandler {
 
+    /**
+     * Initialize mdo instance registrations.
+     */
     public static void initRegistries() {
         NetworkRegistry.INSTANCE.registerGuiHandler(MagicStaffs.instance, new GuiHandler());
     }
 
+    /**
+     * FML pre initialization registration.
+     * @param event
+     */
     public static void preInitRegistries(FMLPreInitializationEvent event) {
         ConfigHandler.registerConfig(event);
         initRegistries();
@@ -36,6 +43,10 @@ public class RegistryHandler {
         event.getRegistry().registerAll(MagicStaffs.ITEMS.toArray(new Item[0]));
     }
 
+    /**
+     * Automatically register blocks on Register&lt;Block&gt; event.
+     * @param event register block event
+     */
     @SubscribeEvent
     public static void onBlockRegister(RegistryEvent.Register<Block> event) {
         event.getRegistry().registerAll(MagicStaffs.BLOCKS.toArray(new Block[0]));

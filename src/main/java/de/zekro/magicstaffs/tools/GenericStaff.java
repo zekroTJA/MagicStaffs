@@ -32,9 +32,9 @@ public abstract class GenericStaff extends ItemBase {
     /**
      * Create new instance of GenericStaff.
      * Creates item instance and sets default
-     * max damage (5) and max stack size (1).
-     * @param name
-     * @param tabs
+     * max damage (64) and max stack size (1).
+     * @param name name ID of the staff
+     * @param tabs creative tab
      */
     public GenericStaff(String name, CreativeTabs tabs) {
         super(name, tabs);
@@ -44,24 +44,38 @@ public abstract class GenericStaff extends ItemBase {
         configEntries = getInitializedConfigEntries();
     }
 
-    @Override
-    public ActionResult<ItemStack> onItemRightClick(World world, EntityPlayer player, EnumHand hand) {
-        return super.onItemRightClick(world, player, hand);
-    }
-
     /**
      * Returns the essence the Staff is made of.
      * @return Essence item instance
      */
     public abstract Item getEssenceMadeOf();
 
+    /**
+     * Returns a list of ConfigEntries which will be added
+     * to the configs and set to the staffs ConfigEntries
+     * list.
+     * @return list of ConfigEntries
+     */
     protected abstract List<ConfigEntry> getInitializedConfigEntries();
 
+    /**
+     * Runs when all configurations were read from file and set
+     * to initialized ConfigEntries.
+     */
     public abstract void configInitialized();
 
+    /**
+     * Returns the list of ConfigEntries.
+     * @return list of config entries
+     */
     public List<ConfigEntry> getConfigEntries() {
         return configEntries;
     };
+
+    @Override
+    public ActionResult<ItemStack> onItemRightClick(World world, EntityPlayer player, EnumHand hand) {
+        return super.onItemRightClick(world, player, hand);
+    }
 
     @Nullable
     public ConfigEntry getConfigEntryByKey(String key) {

@@ -2,6 +2,7 @@ package de.zekro.magicstaffs.blocks.infuser;
 
 import de.zekro.magicstaffs.MagicStaffs;
 import de.zekro.magicstaffs.blocks.BlockBase;
+import de.zekro.magicstaffs.handlers.ConfigHandler;
 import de.zekro.magicstaffs.handlers.GuiHandler;
 import net.minecraft.block.ITileEntityProvider;
 import net.minecraft.block.material.Material;
@@ -25,7 +26,7 @@ import java.util.Random;
  */
 public class BlockInfuser extends BlockBase implements ITileEntityProvider {
 
-    protected static final AxisAlignedBB AABB = new AxisAlignedBB(0.0D, 0.0D, 0.0D, 1.0D, 0.75D, 1.0D);
+    private static final AxisAlignedBB AABB = new AxisAlignedBB(0.0D, 0.0D, 0.0D, 1.0D, 0.75D, 1.0D);
 
     /**
      * Create block instance of Infusion Table.
@@ -78,7 +79,7 @@ public class BlockInfuser extends BlockBase implements ITileEntityProvider {
 
         if (!worldIn.isRemote) {
             if (worldIn.getTileEntity(pos) instanceof TileEntityInfuser) {
-                playerIn.openGui(MagicStaffs.instance, GuiHandler.ID_INFUSER, worldIn, pos.getX(), pos.getY(), pos.getZ());
+                playerIn.openGui(MagicStaffs.instance, ConfigHandler.GUI_INFUSER, worldIn, pos.getX(), pos.getY(), pos.getZ());
             }
         }
 
