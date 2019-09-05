@@ -16,6 +16,7 @@ import net.minecraftforge.fml.common.Mod.EventHandler;
 import net.minecraftforge.fml.common.SidedProxy;
 import net.minecraftforge.fml.common.event.FMLPreInitializationEvent;
 
+import java.io.File;
 import java.util.ArrayList;
 
 /**
@@ -55,6 +56,6 @@ public class MagicStaffs {
 
     @EventHandler
     public void preInit(FMLPreInitializationEvent event) {
-        RegistryHandler.initRegistries();
+        RegistryHandler.preInitRegistries(event);
     }
 }

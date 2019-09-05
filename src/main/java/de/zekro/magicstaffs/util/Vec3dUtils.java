@@ -25,7 +25,7 @@ public class Vec3dUtils {
      * @param by multiply by
      * @return result
      */
-    public static Vec3d multiply(Vec3d vec, double by) {
+    public static Vec3d multiply(Vec3d vec, float by) {
         return multiply(vec, new Vec3d(by, by, by));
     }
 }
