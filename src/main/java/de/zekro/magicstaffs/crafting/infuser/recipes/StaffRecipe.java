@@ -1,24 +1,26 @@
 package de.zekro.magicstaffs.crafting.infuser.recipes;
 
-import de.zekro.magicstaffs.MagicStaffs;
-import de.zekro.magicstaffs.items.IBaseStaff;
 import de.zekro.magicstaffs.items.staffs.BaseStaff;
 import de.zekro.magicstaffs.tools.GenericStaff;
-import de.zekro.magicstaffs.util.InventoryUtils;
 import net.minecraft.inventory.InventoryCrafting;
-import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.item.crafting.IRecipe;
-import net.minecraft.util.NonNullList;
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.world.World;
 
 import javax.annotation.Nullable;
 
+/**
+ * Recipe for staffs.
+ */
 public class StaffRecipe implements IRecipe {
 
     private GenericStaff staff;
 
+    /**
+     * Create new instance of StaffRecipe.
+     * @param staff the staff item instance
+     */
     public StaffRecipe(GenericStaff staff) {
         this.staff = staff;
     }
@@ -66,12 +68,4 @@ public class StaffRecipe implements IRecipe {
     public boolean isDynamic() {
         return true;
     }
-
-//    @Override
-//    public NonNullList<ItemStack> getRemainingItems(InventoryCrafting inv) {
-//        NonNullList<ItemStack> ret = NonNullList.withSize(inv.getSizeInventory(), ItemStack.EMPTY);
-//        ret.set(1, InventoryUtils.decreaseInventorySlot(inv, 1, 1));
-//        ret.set(2, InventoryUtils.decreaseInventorySlot(inv, 2, 1));
-//        return ret;
-//    }
 }

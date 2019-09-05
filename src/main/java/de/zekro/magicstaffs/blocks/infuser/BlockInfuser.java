@@ -2,7 +2,7 @@ package de.zekro.magicstaffs.blocks.infuser;
 
 import de.zekro.magicstaffs.MagicStaffs;
 import de.zekro.magicstaffs.blocks.BlockBase;
-import de.zekro.magicstaffs.gui.GuiIDs;
+import de.zekro.magicstaffs.handlers.GuiHandler;
 import net.minecraft.block.ITileEntityProvider;
 import net.minecraft.block.material.Material;
 import net.minecraft.block.state.IBlockState;
@@ -17,8 +17,16 @@ import net.minecraft.world.World;
 
 import java.util.Random;
 
+/**
+ * Infusion Table Block.
+ */
 public class BlockInfuser extends BlockBase implements ITileEntityProvider {
 
+    /**
+     * Create block instance of Infusion Table.
+     * @param name name ID of the block
+     * @param tabs creative tab
+     */
     public BlockInfuser(String name, CreativeTabs tabs) {
         super(name, Material.ROCK, tabs);
         setHardness(5);
@@ -40,7 +48,7 @@ public class BlockInfuser extends BlockBase implements ITileEntityProvider {
 
         if (!worldIn.isRemote) {
             if (worldIn.getTileEntity(pos) instanceof TileEntityInfuser) {
-                playerIn.openGui(MagicStaffs.instance, GuiIDs.INFUSER, worldIn, pos.getX(), pos.getY(), pos.getZ());
+                playerIn.openGui(MagicStaffs.instance, GuiHandler.ID_INFUSER, worldIn, pos.getX(), pos.getY(), pos.getZ());
             }
         }
 

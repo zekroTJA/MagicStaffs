@@ -18,6 +18,10 @@ import net.minecraftforge.fml.common.event.FMLPreInitializationEvent;
 
 import java.util.ArrayList;
 
+/**
+ * MagiStaffs Forge Mod.
+ * @author zekro Development (Ringo Hoffmann)
+ */
 @Mod(modid = MagicStaffs.MOD_ID, name = MagicStaffs.NAME, version = MagicStaffs.VERSION)
 public class MagicStaffs {
 
@@ -53,8 +57,4 @@ public class MagicStaffs {
     public void preInit(FMLPreInitializationEvent event) {
         RegistryHandler.initRegistries();
     }
-
-//    @EventHandler
-//    public void init(FMLInitializationEvent event) {
-//    }
 }

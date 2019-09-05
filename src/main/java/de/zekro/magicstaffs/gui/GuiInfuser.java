@@ -8,12 +8,20 @@ import net.minecraft.client.renderer.GlStateManager;
 import net.minecraft.entity.player.InventoryPlayer;
 import net.minecraft.util.ResourceLocation;
 
+/**
+ * The GUI of the Infusion Table.
+ */
 public class GuiInfuser extends GuiContainer {
 
     private static final ResourceLocation TEXTURE = new ResourceLocation(MagicStaffs.MOD_ID, "textures/gui/infuser.png");
     private final InventoryPlayer player;
     private final TileEntityInfuser entity;
 
+    /**
+     * Create new instance of GuiInfuser;
+     * @param player inventory player instance
+     * @param entity block tile entity instance
+     */
     public GuiInfuser(InventoryPlayer player, TileEntityInfuser entity) {
         super(new ContainerInfuser(player, entity));
         this.player = player;

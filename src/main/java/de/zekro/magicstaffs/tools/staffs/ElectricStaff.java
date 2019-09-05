@@ -15,10 +15,18 @@ import net.minecraft.util.SoundCategory;
 import net.minecraft.util.math.Vec3d;
 import net.minecraft.world.World;
 
+/**
+ * Electric Staff Tool Item Class.
+ */
 public class ElectricStaff extends GenericStaff {
 
     private static final double ACCELERATION = 1.75;
 
+    /**
+     * Create new instance of ElectricStaff.
+     * @param name name ID of the item
+     * @param tabs creative tab
+     */
     public ElectricStaff(String name, CreativeTabs tabs) {
         super(name, tabs);
     }
@@ -56,6 +64,7 @@ public class ElectricStaff extends GenericStaff {
         return super.onItemRightClick(world, player, hand);
     }
 
+    @Override
     public Item getEssenceMadeOf() {
         return MagicStaffs.ELECTRIC_ESSENCE;
     }

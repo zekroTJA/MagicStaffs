@@ -11,10 +11,39 @@ import net.minecraftforge.common.capabilities.Capability;
 import net.minecraftforge.items.CapabilityItemHandler;
 import net.minecraftforge.items.ItemStackHandler;
 
+/**
+ * Tile entity for the Infusion Table.
+ */
 public class TileEntityInfuser extends TileEntity {
 
     private ItemStackHandler handler = new ItemStackHandler(3);
     private String customName;
+
+    /**
+     * Returns if the tile entity has a custom name.
+     * @return has custom name
+     */
+    public boolean hasCustomName() {
+        return this.customName != null && !this.customName.isEmpty();
+    }
+
+    /**
+     * Sets a custom name for the tile entity.
+     * @param customName custom name
+     */
+    public void setCustomName(String customName) {
+        this.customName = customName;
+    }
+
+    /**
+     * Returns if the container is usable by the passed
+     * player entity.
+     * @param player player entity which want to access the container
+     * @return ability to access
+     */
+    public boolean isUsableByPlayer(EntityPlayer player) {
+        return world.getTileEntity(this.pos) == this && player.getDistanceSq((double) this.pos.getX() + 0.5D, (double) this.pos.getY() + 0.5D, (double) this.pos.getZ() + 0.5D) <= 64.0D;
+    }
 
     @Override
     public boolean hasCapability(Capability<?> capability, EnumFacing facing) {
@@ -27,14 +56,6 @@ public class TileEntityInfuser extends TileEntity {
             return (T) this.handler;
 
         return super.getCapability(capability, facing);
-    }
-
-    public boolean hasCustomName() {
-        return this.customName != null && !this.customName.isEmpty();
-    }
-
-    public void setCustomName(String customName) {
-        this.customName = customName;
     }
 
     @Override
@@ -58,9 +79,5 @@ public class TileEntityInfuser extends TileEntity {
             compound.setString("CustomName", this.customName);
 
         return compound;
-    }
-
-    public boolean isUsableByPlayer(EntityPlayer player) {
-        return world.getTileEntity(this.pos) == this && player.getDistanceSq((double) this.pos.getX() + 0.5D, (double) this.pos.getY() + 0.5D, (double) this.pos.getZ() + 0.5D) <= 64.0D;
     }
 }
