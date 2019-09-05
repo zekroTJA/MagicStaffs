@@ -6,12 +6,19 @@ import de.zekro.magicstaffs.items.IHasModel;
 import de.zekro.magicstaffs.items.ItemBase;
 import net.minecraft.creativetab.CreativeTabs;
 
+/**
+ * Base Staff Item Class.
+ */
 public class BaseStaff extends ItemBase implements IBaseStaff, IHasModel {
 
+    /**
+     * Create new instance of BaseStaff.
+     * @param name name ID of the item
+     * @param tabs creative tab
+     */
     public BaseStaff(String name, CreativeTabs tabs) {
         super(name, tabs);
-        // TODO: Set stackSize(1)
-//        setMaxStackSize(1);
+        setMaxStackSize(1);
     }
 
     @Override

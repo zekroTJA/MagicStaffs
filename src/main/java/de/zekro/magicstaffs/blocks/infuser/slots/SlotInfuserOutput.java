@@ -6,16 +6,27 @@ import net.minecraft.inventory.IInventory;
 import net.minecraft.inventory.InventoryCrafting;
 import net.minecraft.inventory.SlotCrafting;
 import net.minecraft.item.ItemStack;
-import net.minecraft.item.crafting.CraftingManager;
 import net.minecraft.util.NonNullList;
 
+/**
+ * Output slot for crafting results of the Infusion Table.
+ */
 public class SlotInfuserOutput extends SlotCrafting {
 
     private InventoryCrafting craftMatrix;
     private EntityPlayer player;
 
-    public SlotInfuserOutput(EntityPlayer player, InventoryCrafting craftMatrix, IInventory inventoryIn, int slotIndex, int xPosition, int yPosition) {
-        super(player, craftMatrix, inventoryIn, slotIndex, xPosition, yPosition);
+    /**
+     * Create new instance of SlotInfuserOutput.
+     * @param player player entity object
+     * @param craftMatrix craft matrix inventory
+     * @param result result inventory
+     * @param slotIndex slot index
+     * @param xPosition GUI X position
+     * @param yPosition GUI Y position
+     */
+    public SlotInfuserOutput(EntityPlayer player, InventoryCrafting craftMatrix, IInventory result, int slotIndex, int xPosition, int yPosition) {
+        super(player, craftMatrix, result, slotIndex, xPosition, yPosition);
         this.craftMatrix = craftMatrix;
         this.player = player;
     }

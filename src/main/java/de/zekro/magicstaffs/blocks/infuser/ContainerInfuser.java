@@ -15,6 +15,9 @@ import net.minecraft.world.World;
 import net.minecraftforge.items.CapabilityItemHandler;
 import net.minecraftforge.items.IItemHandler;
 
+/**
+ * The container for the Infusion Table.
+ */
 public class ContainerInfuser extends Container {
 
     private final TileEntityInfuser entity;
@@ -25,11 +28,15 @@ public class ContainerInfuser extends Container {
 
     private InventoryCrafting craftMatrix = new InventoryCrafting(this, 3, 1);
 
+    /**
+     * Create new instance of the container.
+     * @param player inventory player instance
+     * @param entity block tile entity instance
+     */
     public ContainerInfuser(InventoryPlayer player, TileEntityInfuser entity) {
-        world = player.player.getEntityWorld();
+        this.world = player.player.getEntityWorld();
         this.player = player.player;
         this.entity = entity;
-        IItemHandler handler = entity.getCapability(CapabilityItemHandler.ITEM_HANDLER_CAPABILITY, null);
 
         addSlotToContainer(new SlotInfuserOutput(player.player, craftMatrix, result, 0, 127, 33));
         addSlotToContainer(new SlotInfuserStaffInput(craftMatrix, 1, 27, 33));
@@ -66,7 +73,7 @@ public class ContainerInfuser extends Container {
             }
 
             result.setInventorySlotContents(0, itemstack);
-            entityplayermp.connection.sendPacket(new SPacketSetSlot(this.windowId, 0, itemstack));
+            entityplayermp.connection.sendPacket(new SPacketSetSlot(windowId, 0, itemstack));
         }
     }
 
@@ -93,7 +100,7 @@ public class ContainerInfuser extends Container {
             itemStack = itemStack1.copy();
 
             if (index == 0) {
-                itemStack1.getItem().onCreated(itemStack1, this.world, playerIn);
+                itemStack1.getItem().onCreated(itemStack1, world, playerIn);
 
                 if (!mergeItemStack(itemStack1, 3, 39, true)) {
                     return ItemStack.EMPTY;
@@ -141,6 +148,6 @@ public class ContainerInfuser extends Container {
         super.onContainerClosed(playerIn);
 
         if (!world.isRemote)
-            clearContainer(playerIn, world, this.craftMatrix);
+            clearContainer(playerIn, world, craftMatrix);
     }
 }

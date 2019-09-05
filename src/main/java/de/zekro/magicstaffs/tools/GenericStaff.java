@@ -10,6 +10,10 @@ import net.minecraft.util.ActionResult;
 import net.minecraft.util.EnumHand;
 import net.minecraft.world.World;
 
+/**
+ * Generic Staff Abstract Class.
+ * Defines the general structure of a Staff Tool Item Class.
+ */
 public abstract class GenericStaff extends ItemBase {
 
     private static final long DEFAULT_ACTION_COOL_DOWN = 10;
@@ -17,6 +21,13 @@ public abstract class GenericStaff extends ItemBase {
     protected CoolDown coolDownClient = new CoolDown(DEFAULT_ACTION_COOL_DOWN);
     protected CoolDown coolDownServer = new CoolDown(DEFAULT_ACTION_COOL_DOWN);
 
+    /**
+     * Create new instance of GenericStaff.
+     * Creates item instance and sets default
+     * max damage (5) and max stack size (1).
+     * @param name
+     * @param tabs
+     */
     public GenericStaff(String name, CreativeTabs tabs) {
         super(name, tabs);
         setMaxDamage(5);
@@ -28,5 +39,9 @@ public abstract class GenericStaff extends ItemBase {
         return super.onItemRightClick(world, player, hand);
     }
 
+    /**
+     * Returns the essence the Staff is made of.
+     * @return Essence item instance
+     */
     public abstract Item getEssenceMadeOf();
 }
