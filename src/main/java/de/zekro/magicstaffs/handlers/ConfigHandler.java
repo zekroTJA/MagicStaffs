@@ -16,9 +16,6 @@ public class ConfigHandler {
 
     public static int GUI_INFUSER = 0;
 
-    public static double ELECTRIC_STAFF_ACCELERATION = 1.75f;
-    public static int ELECTRIC_STAFF_DURABILITY = 64;
-
     public static void init(File mainConfigFile, List<Tuple<GenericStaff, File>> staffPropertyConfigs) {
         mainConfig = new Configuration(mainConfigFile);
 
@@ -31,21 +28,6 @@ public class ConfigHandler {
                 "infusion_table_main", category, 0, 0, Integer.MAX_VALUE,
                 "ID for the Infusion Table main GUI."
         );
-
-//        // STAFFS
-//        category = "staffs";
-//        mainConfig.addCustomCategoryComment(category, "Set properties for staffs.");
-//
-//        // ELECTRIC STAFF
-//        ELECTRIC_STAFF_ACCELERATION = mainConfig.getFloat(
-//                "electric_staff_acceleration", category, 1.75f, 0f, 100f,
-//                "The acceleration amount on Electric Staff action."
-//        );
-//        ELECTRIC_STAFF_DURABILITY = mainConfig.getInt(
-//                "electric_staff_durability",
-//                category, 64, 1, Integer.MAX_VALUE,
-//                "The usage durability of an Electric Staff."
-//        );
 
         staffPropertyConfigs.forEach(tp ->
                 initStaffConfig(tp.getSecond(), tp.getFirst()));
