@@ -21,6 +21,7 @@ import net.minecraft.world.World;
 public class ElectricStaff extends GenericStaff {
 
     private static final double ACCELERATION = 1.75;
+    private static final int MAX_DAMAGE = 64;
 
     /**
      * Create new instance of ElectricStaff.
@@ -29,6 +30,7 @@ public class ElectricStaff extends GenericStaff {
      */
     public ElectricStaff(String name, CreativeTabs tabs) {
         super(name, tabs);
+        setMaxDamage(MAX_DAMAGE);
     }
 
     @Override

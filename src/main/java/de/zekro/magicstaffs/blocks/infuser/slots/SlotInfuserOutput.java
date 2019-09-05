@@ -66,8 +66,6 @@ public class SlotInfuserOutput extends SlotCrafting {
             }
         }
 
-        System.out.printf("#%d: %d\n", 1, this.craftMatrix.getStackInSlot(1).getCount());
-        System.out.printf("#%d: %d\n", 2, this.craftMatrix.getStackInSlot(2).getCount());
         return stack;
     }
 }
