@@ -1,6 +1,7 @@
 package de.zekro.magicstaffs.tools;
 
 import de.zekro.magicstaffs.items.ItemBase;
+import de.zekro.magicstaffs.util.ConfigEntry;
 import de.zekro.magicstaffs.util.CoolDown;
 import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.entity.player.EntityPlayer;
@@ -9,6 +10,11 @@ import net.minecraft.item.ItemStack;
 import net.minecraft.util.ActionResult;
 import net.minecraft.util.EnumHand;
 import net.minecraft.world.World;
+import scala.actors.threadpool.Arrays;
+
+import javax.annotation.Nullable;
+import java.util.HashMap;
+import java.util.List;
 
 /**
  * Generic Staff Abstract Class.
@@ -21,6 +27,8 @@ public abstract class GenericStaff extends ItemBase {
     protected CoolDown coolDownClient = new CoolDown(DEFAULT_ACTION_COOL_DOWN);
     protected CoolDown coolDownServer = new CoolDown(DEFAULT_ACTION_COOL_DOWN);
 
+    protected List<ConfigEntry> configEntries;
+
     /**
      * Create new instance of GenericStaff.
      * Creates item instance and sets default
@@ -30,8 +38,10 @@ public abstract class GenericStaff extends ItemBase {
      */
     public GenericStaff(String name, CreativeTabs tabs) {
         super(name, tabs);
-        setMaxDamage(5);
+        setMaxDamage(64);
         setMaxStackSize(1);
+
+        configEntries = getInitializedConfigEntries();
     }
 
     @Override
@@ -44,4 +54,21 @@ public abstract class GenericStaff extends ItemBase {
      * @return Essence item instance
      */
     public abstract Item getEssenceMadeOf();
+
+    protected abstract List<ConfigEntry> getInitializedConfigEntries();
+
+    public abstract void configInitialized();
+
+    public List<ConfigEntry> getConfigEntries() {
+        return configEntries;
+    };
+
+    @Nullable
+    public ConfigEntry getConfigEntryByKey(String key) {
+        return configEntries
+                .stream()
+                .filter(e -> e.getKey() == key)
+                .findFirst()
+                .orElse(null);
+    }
 }

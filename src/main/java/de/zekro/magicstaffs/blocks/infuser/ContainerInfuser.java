@@ -92,8 +92,6 @@ public class ContainerInfuser extends Container {
         ItemStack itemStack = ItemStack.EMPTY;
         Slot slot = inventorySlots.get(index);
 
-        System.out.println(index);
-
         if (slot != null && slot.getHasStack()) {
 
             ItemStack itemStack1 = slot.getStack();

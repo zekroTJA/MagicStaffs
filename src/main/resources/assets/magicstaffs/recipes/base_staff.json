@@ -1,0 +1,26 @@
+{
+  "type": "minecraft:crafting_shaped",
+
+  "pattern": [
+    "  W",
+    " T ",
+    "S  "
+  ],
+
+  "key": {
+    "W": {
+      "item": "minecraft:wool",
+      "data": 0
+    },
+    "T": {
+      "item": "minecraft:string"
+    },
+    "S": {
+      "item": "minecraft:stick"
+    }
+  },
+
+  "result": {
+    "item": "magicstaffs:base_staff"
+  }
+}

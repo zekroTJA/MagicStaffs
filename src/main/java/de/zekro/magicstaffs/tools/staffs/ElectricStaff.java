@@ -1,7 +1,9 @@
 package de.zekro.magicstaffs.tools.staffs;
 
 import de.zekro.magicstaffs.MagicStaffs;
+import de.zekro.magicstaffs.handlers.ConfigHandler;
 import de.zekro.magicstaffs.tools.GenericStaff;
+import de.zekro.magicstaffs.util.ConfigEntry;
 import de.zekro.magicstaffs.util.Vec3dUtils;
 import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.entity.player.EntityPlayer;
@@ -15,12 +17,18 @@ import net.minecraft.util.SoundCategory;
 import net.minecraft.util.math.Vec3d;
 import net.minecraft.world.World;
 
+import java.util.Arrays;
+import java.util.List;
+
 /**
  * Electric Staff Tool Item Class.
  */
 public class ElectricStaff extends GenericStaff {
 
-    private static final double ACCELERATION = 1.75;
+    private final String CONFIG_ENTRY_DURABILITY = "durability";
+    private final String CONFIG_ENTRY_ACCELERATION = "acceleration";
+
+    private float acceleration = 1.75f;
 
     /**
      * Create new instance of ElectricStaff.
@@ -34,7 +42,7 @@ public class ElectricStaff extends GenericStaff {
     @Override
     public ActionResult<ItemStack> onItemRightClick(World world, EntityPlayer player, EnumHand hand) {
         ItemStack itemStack = player.getHeldItem(hand);
-        Vec3d aim = Vec3dUtils.multiply(player.getLookVec(), ACCELERATION);
+        Vec3d aim = Vec3dUtils.multiply(player.getLookVec(), acceleration);
 
         if (world.isRemote) {
             if (!coolDownServer.take(world))
@@ -67,5 +75,19 @@ public class ElectricStaff extends GenericStaff {
     @Override
     public Item getEssenceMadeOf() {
         return MagicStaffs.ELECTRIC_ESSENCE;
+    }
+
+    @Override
+    public List<ConfigEntry> getInitializedConfigEntries() {
+        return Arrays.asList(
+                new ConfigEntry<>(CONFIG_ENTRY_DURABILITY, 64, 0, Integer.MAX_VALUE, "The durability of the staff."),
+                new ConfigEntry<>(CONFIG_ENTRY_ACCELERATION, 1.75f, 0f, 100f, "The velocity gained by using the staff.")
+        );
+    }
+
+    @Override
+    public void configInitialized() {
+        setMaxDamage((int) getConfigEntryByKey(CONFIG_ENTRY_DURABILITY).getCollected());
+        acceleration = (float) getConfigEntryByKey(CONFIG_ENTRY_ACCELERATION).getCollected();
     }
 }
