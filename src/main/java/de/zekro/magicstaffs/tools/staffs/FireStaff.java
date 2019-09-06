@@ -54,8 +54,6 @@ public class FireStaff extends GenericStaff {
         Vec3d aim = Vec3dUtils.multiply(player.getLookVec(), 1);
         Vec3d playerPos = player.getPositionEyes(1);
 
-
-
         if (world.isRemote) {
             if (!coolDownServer.take(world))
                 return super.onItemRightClick(world, player, hand);
@@ -85,10 +83,10 @@ public class FireStaff extends GenericStaff {
                     SoundEvents.ENTITY_ITEM_BREAK, SoundCategory.PLAYERS,
                     1F, 1F);
         } else {
-            if (player.isCreative() || !coolDownClient.take(world))
+            if (!coolDownClient.take(world))
                 return super.onItemRightClick(world, player, hand);
 
-            if (getMaxDamage(itemStack) <= itemStack.getItemDamage())
+            if (!player.isCreative() && getMaxDamage(itemStack) <= itemStack.getItemDamage())
                 return new ActionResult<>(EnumActionResult.SUCCESS, ItemStack.EMPTY);
 
             for (int i = 0; i < effectiveRange; ++i) {
@@ -104,6 +102,7 @@ public class FireStaff extends GenericStaff {
                 world.getEntitiesInAABBexcluding(player, AABB, entity -> entity instanceof EntityLivingBase)
                         .forEach(entity -> {
                             entity.setFire(burnDuration);
+                            System.out.println(entity.getDisplayName());
                         });
             }
 
