@@ -72,6 +72,16 @@ public abstract class GenericStaff extends ItemBase {
         return configEntries;
     };
 
+    /**
+     * Sets the cool down values for the client and the
+     * server cool down handlers.
+     * @param coolDown cool down in world ticks
+     */
+    public void setClientServerCoolDown(long coolDown) {
+        coolDownClient.setCoolDown(coolDown);
+        coolDownServer.setCoolDown(coolDown);
+    }
+
     @Override
     public ActionResult<ItemStack> onItemRightClick(World world, EntityPlayer player, EnumHand hand) {
         return super.onItemRightClick(world, player, hand);

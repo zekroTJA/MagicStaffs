@@ -9,6 +9,7 @@ import net.minecraft.world.World;
  * total world tick time.
  */
 public class CoolDown {
+
     private long coolDown;
     private long lastActivation;
 
@@ -23,6 +24,14 @@ public class CoolDown {
     }
 
     /**
+     * Sets the value for cool down.
+     * @param coolDown cool down in ticks
+     */
+    public void setCoolDown(long coolDown) {
+        this.coolDown = coolDown;
+    }
+
+    /**
      * Try to take an action.
      * Returns false if on cool down. Else, returns
      * true and sets to cool down.
@@ -30,6 +39,9 @@ public class CoolDown {
      * @return cool down status
      */
     public boolean take(World world) {
+        if (coolDown == 0)
+            return true;
+
         if (onCoolDown(world))
             return false;
 

@@ -25,6 +25,7 @@ import java.util.Random;
  */
 public class FireStaff extends GenericStaff {
 
+    private final String CONFIG_ENTRY_COOL_DOWN = "cool_down";
     private final String CONFIG_ENTRY_DURABILITY = "durability";
     private final String CONFIG_ENTRY_PARTICLE_AMOUNT = "particle_amount";
     private final String CONFIG_ENTRY_PARTICLE_SPREAD = "particle_spread";
@@ -56,8 +57,8 @@ public class FireStaff extends GenericStaff {
 
 
         if (world.isRemote) {
-//            if (!coolDownServer.take(world))
-//                return super.onItemRightClick(world, player, hand);
+            if (!coolDownServer.take(world))
+                return super.onItemRightClick(world, player, hand);
 
             // TODO: Play custom sound
 
@@ -84,8 +85,8 @@ public class FireStaff extends GenericStaff {
                     SoundEvents.ENTITY_ITEM_BREAK, SoundCategory.PLAYERS,
                     1F, 1F);
         } else {
-//            if (player.isCreative() || !coolDownClient.take(world))
-//                return super.onItemRightClick(world, player, hand);
+            if (player.isCreative() || !coolDownClient.take(world))
+                return super.onItemRightClick(world, player, hand);
 
             if (getMaxDamage(itemStack) <= itemStack.getItemDamage())
                 return new ActionResult<>(EnumActionResult.SUCCESS, ItemStack.EMPTY);
@@ -122,9 +123,10 @@ public class FireStaff extends GenericStaff {
     @Override
     public List<ConfigEntry> getInitializedConfigEntries() {
         return Arrays.asList(
+                new ConfigEntry<>(CONFIG_ENTRY_COOL_DOWN, 5, 0, Integer.MAX_VALUE, "The cool down until the staff can be re used."),
                 new ConfigEntry<>(CONFIG_ENTRY_DURABILITY, 64, 0, Integer.MAX_VALUE, "The durability of the staff."),
                 new ConfigEntry<>(CONFIG_ENTRY_EFFECTIVE_RANGE, 10, 1, 100, "The range, in blocks, the staff ignites enemies."),
-                new ConfigEntry<>(CONFIG_ENTRY_BURN_DURATION, 2, 1, Integer.MAX_VALUE, "The time an ignited enemy is burning."),
+                new ConfigEntry<>(CONFIG_ENTRY_BURN_DURATION, 10, 1, Integer.MAX_VALUE, "The time an ignited enemy is burning."),
                 new ConfigEntry<>(CONFIG_ENTRY_PARTICLE_AMOUNT, 100, 1, 1000, "The amount of particles created on each use. (Only cosmetic)"),
                 new ConfigEntry<>(CONFIG_ENTRY_PARTICLE_SPREAD, 0.5f, 0f, 10f, "The random particle spread multiplier. (Only cosmetic)")
         );
@@ -132,6 +134,7 @@ public class FireStaff extends GenericStaff {
 
     @Override
     public void configInitialized() {
+        setClientServerCoolDown((int) getConfigEntryByKey(CONFIG_ENTRY_COOL_DOWN).getCollected());
         setMaxDamage((int) getConfigEntryByKey(CONFIG_ENTRY_DURABILITY).getCollected());
         effectiveRange = (int) getConfigEntryByKey(CONFIG_ENTRY_EFFECTIVE_RANGE).getCollected();
         burnDuration = (int) getConfigEntryByKey(CONFIG_ENTRY_BURN_DURATION).getCollected();
