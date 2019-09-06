@@ -2,8 +2,6 @@ package de.zekro.magicstaffs.blocks.infuser;
 
 import de.zekro.magicstaffs.MagicStaffs;
 import de.zekro.magicstaffs.blocks.BlockBase;
-import de.zekro.magicstaffs.handlers.ConfigHandler;
-import de.zekro.magicstaffs.handlers.GuiHandler;
 import net.minecraft.block.ITileEntityProvider;
 import net.minecraft.block.material.Material;
 import net.minecraft.block.state.IBlockState;
@@ -79,7 +77,7 @@ public class BlockInfuser extends BlockBase implements ITileEntityProvider {
 
         if (!worldIn.isRemote) {
             if (worldIn.getTileEntity(pos) instanceof TileEntityInfuser) {
-                playerIn.openGui(MagicStaffs.instance, ConfigHandler.GUI_INFUSER, worldIn, pos.getX(), pos.getY(), pos.getZ());
+                playerIn.openGui(MagicStaffs.instance, MagicStaffs.configHandler.guiIDInfuser, worldIn, pos.getX(), pos.getY(), pos.getZ());
             }
         }
 

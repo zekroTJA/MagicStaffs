@@ -2,6 +2,7 @@ package de.zekro.magicstaffs;
 
 import de.zekro.magicstaffs.blocks.infuser.BlockInfuser;
 import de.zekro.magicstaffs.creativetab.CreativeTab;
+import de.zekro.magicstaffs.handlers.ConfigHandler;
 import de.zekro.magicstaffs.handlers.RegistryHandler;
 import de.zekro.magicstaffs.items.essences.ElectricEssence;
 import de.zekro.magicstaffs.items.staffs.BaseStaff;
@@ -15,6 +16,7 @@ import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.common.Mod.EventHandler;
 import net.minecraftforge.fml.common.SidedProxy;
 import net.minecraftforge.fml.common.event.FMLPreInitializationEvent;
+import net.minecraftforge.fml.common.event.FMLServerStartingEvent;
 
 import java.io.File;
 import java.util.ArrayList;
@@ -29,6 +31,8 @@ public class MagicStaffs {
     public static final String MOD_ID = "magicstaffs";
     public static final String NAME = "Magic Staffs";
     public static final String VERSION = "0.1";
+
+    public static ConfigHandler configHandler;
 
     public static final ArrayList<Item> ITEMS = new ArrayList<>();
     public static final ArrayList<Block> BLOCKS = new ArrayList<>();
@@ -57,5 +61,10 @@ public class MagicStaffs {
     @EventHandler
     public void preInit(FMLPreInitializationEvent event) {
         RegistryHandler.preInitRegistries(event);
+    }
+
+    @EventHandler
+    public void serverInit(FMLServerStartingEvent event) {
+        RegistryHandler.serverRegistries(event);
     }
 }

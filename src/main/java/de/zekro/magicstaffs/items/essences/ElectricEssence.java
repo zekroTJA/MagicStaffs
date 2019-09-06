@@ -9,6 +9,8 @@ import net.minecraft.creativetab.CreativeTabs;
  */
 public class ElectricEssence extends ItemBase implements IEssence {
 
+    private int rarity = 10;
+
     /**
      * Create instance of ElectricEssence.
      * @param name name ID of the item
@@ -16,5 +18,15 @@ public class ElectricEssence extends ItemBase implements IEssence {
      */
     public ElectricEssence(String name, CreativeTabs tabs) {
         super(name, tabs);
+    }
+
+    @Override
+    public int getRarity() {
+        return rarity;
+    }
+
+    @Override
+    public void setRarity(int rarity) {
+        this.rarity = rarity;
     }
 }
