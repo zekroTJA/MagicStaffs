@@ -17,7 +17,10 @@ import java.util.List;
  */
 public class InfuserCraftingManager {
 
-    private static final List<IRecipe> REGISTRY = Arrays.asList(new StaffRecipe(MagicStaffs.ELECTRIC_STAFF));
+    private static final List<IRecipe> REGISTRY = Arrays.asList(
+            new StaffRecipe(MagicStaffs.ELECTRIC_STAFF),
+            new StaffRecipe(MagicStaffs.FIRE_STAFF)
+    );
 
     /**
      * Find matching registered recipe by passed crafting matrix and world.
