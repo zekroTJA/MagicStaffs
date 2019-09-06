@@ -27,6 +27,7 @@ public class ElectricStaff extends GenericStaff {
 
     private final String CONFIG_ENTRY_DURABILITY = "durability";
     private final String CONFIG_ENTRY_ACCELERATION = "acceleration";
+    private final String CONFIG_ENTRY_COOL_DOWN = "cool_down";
 
     private float acceleration = 1.75f;
 
@@ -80,6 +81,7 @@ public class ElectricStaff extends GenericStaff {
     @Override
     public List<ConfigEntry> getInitializedConfigEntries() {
         return Arrays.asList(
+                new ConfigEntry<>(CONFIG_ENTRY_COOL_DOWN, 10, 0, Integer.MAX_VALUE, "The cool down until the staff can be re used."),
                 new ConfigEntry<>(CONFIG_ENTRY_DURABILITY, 64, 0, Integer.MAX_VALUE, "The durability of the staff."),
                 new ConfigEntry<>(CONFIG_ENTRY_ACCELERATION, 1.75f, 0f, 100f, "The velocity gained by using the staff.")
         );
@@ -87,6 +89,7 @@ public class ElectricStaff extends GenericStaff {
 
     @Override
     public void configInitialized() {
+        setClientServerCoolDown((int) getConfigEntryByKey(CONFIG_ENTRY_COOL_DOWN).getCollected());
         setMaxDamage((int) getConfigEntryByKey(CONFIG_ENTRY_DURABILITY).getCollected());
         acceleration = (float) getConfigEntryByKey(CONFIG_ENTRY_ACCELERATION).getCollected();
     }
