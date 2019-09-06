@@ -51,7 +51,7 @@ public class ElectricStaff extends GenericStaff {
             // TODO: Play custom sound
             player.addVelocity(aim.x, aim.y, aim.z);
 
-            if (getMaxDamage(itemStack) == itemStack.getItemDamage())
+            if (getMaxDamage(itemStack) <= itemStack.getItemDamage())
                 world.playSound(
                     player, player.posX, player.posY, player.posZ,
                     SoundEvents.ENTITY_ITEM_BREAK, SoundCategory.PLAYERS,
@@ -60,7 +60,7 @@ public class ElectricStaff extends GenericStaff {
             if (player.isCreative() || !coolDownClient.take(world))
                 return super.onItemRightClick(world, player, hand);
 
-            if (getMaxDamage(itemStack) == itemStack.getItemDamage())
+            if (getMaxDamage(itemStack) <= itemStack.getItemDamage())
                 return new ActionResult<>(EnumActionResult.SUCCESS, ItemStack.EMPTY);
 
             player.fallDistance = 0F;

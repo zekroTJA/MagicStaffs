@@ -1,6 +1,7 @@
 package de.zekro.magicstaffs.handlers;
 
 import de.zekro.magicstaffs.MagicStaffs;
+import de.zekro.magicstaffs.commands.CommandReloadConfig;
 import de.zekro.magicstaffs.items.IHasModel;
 import net.minecraft.block.Block;
 import net.minecraft.item.Item;
@@ -8,6 +9,7 @@ import net.minecraftforge.client.event.ModelRegistryEvent;
 import net.minecraftforge.event.RegistryEvent;
 import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.common.event.FMLPreInitializationEvent;
+import net.minecraftforge.fml.common.event.FMLServerStartingEvent;
 import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
 import net.minecraftforge.fml.common.network.NetworkRegistry;
 
@@ -26,12 +28,20 @@ public class RegistryHandler {
     }
 
     /**
-     * FML pre initialization registration.
+     * FML pre initialization registrations.
      * @param event
      */
     public static void preInitRegistries(FMLPreInitializationEvent event) {
-        ConfigHandler.registerConfig(event);
+        MagicStaffs.configHandler = new ConfigHandler(event);
         initRegistries();
+    }
+
+    /**
+     * FML server initialization registrations.
+     * @param event
+     */
+    public static void serverRegistries(FMLServerStartingEvent event) {
+        event.registerServerCommand(new CommandReloadConfig());
     }
 
     /**
