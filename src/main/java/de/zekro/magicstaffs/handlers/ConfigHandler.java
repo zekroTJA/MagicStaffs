@@ -2,6 +2,8 @@ package de.zekro.magicstaffs.handlers;
 
 import de.zekro.magicstaffs.MagicStaffs;
 import de.zekro.magicstaffs.tools.GenericStaff;
+import de.zekro.magicstaffs.util.ItemUtils;
+import net.minecraft.item.Item;
 import net.minecraft.util.Tuple;
 import net.minecraftforge.common.config.Configuration;
 import net.minecraftforge.fml.common.event.FMLPreInitializationEvent;
@@ -35,6 +37,22 @@ public class ConfigHandler {
                 "infusion_table_main", category, 0, 0, Integer.MAX_VALUE,
                 "ID for the Infusion Table main GUI."
         );
+
+        // RARITIES
+        final String categoryRarity = "rarities";
+        mainConfig.addCustomCategoryComment(categoryRarity, "Define how rarely items should spawn in dungeon chests.");
+
+        ItemUtils.getRegisteredEssences().forEach(essence -> {
+            final String resourceName = ((Item) essence).getRegistryName().getResourcePath();
+            essence.setRarity(mainConfig.getInt(
+                    resourceName,
+                    categoryRarity,
+                    10,
+                    0,
+                    50,
+                    "Spawn rarity for essence " + resourceName + "."
+            ));
+        });
 
         staffPropertyConfigs.forEach(tp ->
                 initStaffConfig(tp.getSecond(), tp.getFirst()));
@@ -73,20 +91,6 @@ public class ConfigHandler {
     }
 
     /**
-     * Returns a list of staffs extending the
-     * GenericStaff class.
-     * @return list of staffs
-     */
-    private static List<GenericStaff> getRegisteredStaffs() {
-        ArrayList<GenericStaff> staffs = new ArrayList();
-        MagicStaffs.ITEMS
-                .stream()
-                .filter(item -> item instanceof GenericStaff)
-                .forEach(item -> staffs.add((GenericStaff) item));
-        return staffs;
-    }
-
-    /**
      * Create config locations and initialize
      * main config and staff configurations.
      * @param event
@@ -100,7 +104,7 @@ public class ConfigHandler {
 
         ArrayList<Tuple<GenericStaff, File>> staffPropertyFiles = new ArrayList<>();
 
-        getRegisteredStaffs()
+        ItemUtils.getRegisteredStaffs()
                 .forEach(staff -> staffPropertyFiles.add(
                         new Tuple<>(staff, new File(staffsConfigLocation.getPath(), staff.getRegistryName().getResourcePath() + ".cfg"))));
 
