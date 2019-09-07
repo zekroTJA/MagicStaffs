@@ -31,6 +31,7 @@ import java.util.ArrayList;
 @Mod(modid = MagicStaffs.MOD_ID, name = MagicStaffs.NAME, version = MagicStaffs.VERSION)
 public class MagicStaffs {
 
+    // General Mod Properties
     public static final String MOD_ID = "magicstaffs";
     public static final String NAME = "Magic Staffs";
     public static final String VERSION = "0.3";
@@ -56,21 +57,28 @@ public class MagicStaffs {
     // BLOCKS
     public static final Block INFUSER = new BlockInfuser("infuser", CREATIVE_TAB);
 
+    /**
+     * Main class initialization.
+     */
     public MagicStaffs() {
         CREATIVE_TAB.setTabIconItem(new ItemStack(ELECTRIC_STAFF));
     }
 
+    // Mod instance.
     @Mod.Instance(MOD_ID)
     public static MagicStaffs instance;
 
+    // Proxy depending on side called from.
     @SidedProxy(clientSide = "de.zekro.magicstaffs.proxy.ClientProxy", serverSide = "de.zekro.magicstaffs.proxy.CommonProxy")
     public static CommonProxy proxy;
 
+    // Pre-init event handler
     @EventHandler
     public void preInit(FMLPreInitializationEvent event) {
         RegistryHandler.preInitRegistries(event);
     }
 
+    // Server-init event handler
     @EventHandler
     public void serverInit(FMLServerStartingEvent event) {
         RegistryHandler.serverRegistries(event);

@@ -11,9 +11,18 @@ import net.minecraftforge.event.LootTableLoadEvent;
 import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
 
+/**
+ * Handler registering items which shall be present in
+ * loot chests in dungeons.
+ */
 @Mod.EventBusSubscriber
 public class LootTableHandler {
 
+    /**
+     * Called when LootTableLoadEvent caused registering Essence
+     * items in loot tables of dungeon chests.
+     * @param event LootTableLoadEvent
+     */
     @SubscribeEvent
     public static void onLootTableLoad(LootTableLoadEvent event) {
 

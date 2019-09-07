@@ -1,23 +1,17 @@
 package de.zekro.magicstaffs.tools.staffs;
 
 import de.zekro.magicstaffs.MagicStaffs;
-import de.zekro.magicstaffs.handlers.ConfigHandler;
 import de.zekro.magicstaffs.tools.GenericStaff;
 import de.zekro.magicstaffs.util.ConfigEntry;
 import de.zekro.magicstaffs.util.Vec3dUtils;
 import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.entity.player.EntityPlayer;
-import net.minecraft.init.SoundEvents;
 import net.minecraft.item.Item;
-import net.minecraft.item.ItemStack;
-import net.minecraft.util.ActionResult;
-import net.minecraft.util.EnumActionResult;
 import net.minecraft.util.EnumHand;
-import net.minecraft.util.SoundCategory;
 import net.minecraft.util.math.Vec3d;
 import net.minecraft.world.World;
 
-import java.util.Arrays;
+import java.util.Collections;
 import java.util.List;
 
 /**
@@ -25,9 +19,7 @@ import java.util.List;
  */
 public class ElectricStaff extends GenericStaff {
 
-    private final String CONFIG_ENTRY_DURABILITY = "durability";
     private final String CONFIG_ENTRY_ACCELERATION = "acceleration";
-    private final String CONFIG_ENTRY_COOL_DOWN = "cool_down";
 
     private float acceleration = 1.75f;
 
@@ -41,36 +33,15 @@ public class ElectricStaff extends GenericStaff {
     }
 
     @Override
-    public ActionResult<ItemStack> onItemRightClick(World world, EntityPlayer player, EnumHand hand) {
-        ItemStack itemStack = player.getHeldItem(hand);
+    public void clickAction(World world, EntityPlayer player, EnumHand hand) {
         Vec3d aim = Vec3dUtils.multiply(player.getLookVec(), acceleration);
 
         if (world.isRemote) {
-            if (!coolDownServer.take(world))
-                return super.onItemRightClick(world, player, hand);
-
-            // TODO: Play custom sound
             player.addVelocity(aim.x, aim.y, aim.z);
-
-            if (getMaxDamage(itemStack) <= itemStack.getItemDamage())
-                world.playSound(
-                    player, player.posX, player.posY, player.posZ,
-                    SoundEvents.ENTITY_ITEM_BREAK, SoundCategory.PLAYERS,
-                    1F, 1F);
-        } else {
-            if (player.isCreative() || !coolDownClient.take(world))
-                return super.onItemRightClick(world, player, hand);
-
-            if (getMaxDamage(itemStack) <= itemStack.getItemDamage())
-                return new ActionResult<>(EnumActionResult.SUCCESS, ItemStack.EMPTY);
-
-            player.fallDistance = 0F;
-            setDamage(itemStack, itemStack.getItemDamage() + 1);
-
-            return new ActionResult<>(EnumActionResult.SUCCESS, itemStack);
         }
-
-        return super.onItemRightClick(world, player, hand);
+        else {
+            player.fallDistance = 0F;
+        }
     }
 
     @Override
@@ -80,17 +51,15 @@ public class ElectricStaff extends GenericStaff {
 
     @Override
     public List<ConfigEntry> getInitializedConfigEntries() {
-        return Arrays.asList(
-                new ConfigEntry<>(CONFIG_ENTRY_COOL_DOWN, 10, 0, Integer.MAX_VALUE, "The cool down until the staff can be re used."),
-                new ConfigEntry<>(CONFIG_ENTRY_DURABILITY, 64, 0, Integer.MAX_VALUE, "The durability of the staff."),
+        return Collections.singletonList(
                 new ConfigEntry<>(CONFIG_ENTRY_ACCELERATION, 1.75f, 0f, 100f, "The velocity gained by using the staff.")
         );
     }
 
     @Override
     public void configInitialized() {
-        setClientServerCoolDown((int) getConfigEntryByKey(CONFIG_ENTRY_COOL_DOWN).getCollected());
-        setMaxDamage((int) getConfigEntryByKey(CONFIG_ENTRY_DURABILITY).getCollected());
         acceleration = (float) getConfigEntryByKey(CONFIG_ENTRY_ACCELERATION).getCollected();
+
+        super.configInitialized();
     }
 }

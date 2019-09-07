@@ -1,6 +1,5 @@
 package de.zekro.magicstaffs.crafting.infuser;
 
-import de.zekro.magicstaffs.MagicStaffs;
 import de.zekro.magicstaffs.crafting.infuser.recipes.StaffRecipe;
 import de.zekro.magicstaffs.util.ItemUtils;
 import net.minecraft.inventory.InventoryCrafting;
@@ -11,7 +10,6 @@ import net.minecraft.world.World;
 
 import javax.annotation.Nullable;
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
 
 /**

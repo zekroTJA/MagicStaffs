@@ -1,6 +1,5 @@
 package de.zekro.magicstaffs.commands;
 
-import com.google.common.collect.Lists;
 import de.zekro.magicstaffs.MagicStaffs;
 import de.zekro.magicstaffs.util.CommandUtil;
 import net.minecraft.command.CommandBase;
@@ -10,6 +9,9 @@ import net.minecraft.server.MinecraftServer;
 import net.minecraft.util.text.TextComponentString;
 import net.minecraft.util.text.TextFormatting;
 
+/**
+ * Command which can be used to reload configs.
+ */
 public class CommandReloadConfig extends CommandBase {
 
     @Override

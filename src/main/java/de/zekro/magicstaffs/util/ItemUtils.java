@@ -12,7 +12,7 @@ public class ItemUtils {
     /**
      * Returns a list of staffs extending the
      * GenericStaff class.
-     * @return list of staffs
+     * @return list of staff items
      */
     public static List<GenericStaff> getRegisteredStaffs() {
         ArrayList<GenericStaff> staffs = new ArrayList();
@@ -23,6 +23,11 @@ public class ItemUtils {
         return staffs;
     }
 
+    /**
+     * Returns a list of essences implementing the
+     * IEssence class.
+     * @return list of essence items
+     */
     public static List<IEssence> getRegisteredEssences() {
         ArrayList<IEssence> essences = new ArrayList();
         MagicStaffs.ITEMS
