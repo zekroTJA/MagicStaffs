@@ -1,6 +1,5 @@
 package de.zekro.magicstaffs.tools;
 
-import com.sun.istack.internal.NotNull;
 import de.zekro.magicstaffs.items.ItemBase;
 import de.zekro.magicstaffs.util.ConfigEntry;
 import de.zekro.magicstaffs.util.CoolDown;
@@ -51,12 +50,7 @@ public abstract class GenericStaff extends ItemBase {
         setMaxDamage(64);
         setMaxStackSize(1);
 
-        List<ConfigEntry> entries = getInitializedConfigEntries();
-//        entries.forEach(e ->
-//                configEntries.add(e));
-//        configEntries.addAll(entries);
-
-        configEntries.addAll(entries);
+        configEntries.addAll(getInitializedConfigEntries());
     }
 
     /**
@@ -142,7 +136,6 @@ public abstract class GenericStaff extends ItemBase {
         return super.onItemRightClick(world, player, hand);
     }
 
-    @NotNull
     public ConfigEntry getConfigEntryByKey(String key) throws NullPointerException {
         return configEntries
                 .stream()
