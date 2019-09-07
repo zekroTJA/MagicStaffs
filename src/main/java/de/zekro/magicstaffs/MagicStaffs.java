@@ -34,7 +34,7 @@ public class MagicStaffs {
     // General Mod Properties
     public static final String MOD_ID = "magicstaffs";
     public static final String NAME = "Magic Staffs";
-    public static final String VERSION = "0.3";
+    public static final String VERSION = "0.4";
 
     public static ConfigHandler configHandler;
 
