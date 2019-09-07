@@ -12,8 +12,6 @@ import net.minecraft.item.ItemStack;
 import net.minecraft.item.crafting.IRecipe;
 import net.minecraft.network.play.server.SPacketSetSlot;
 import net.minecraft.world.World;
-import net.minecraftforge.items.CapabilityItemHandler;
-import net.minecraftforge.items.IItemHandler;
 
 /**
  * The container for the Infusion Table.

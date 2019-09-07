@@ -4,15 +4,18 @@ import de.zekro.magicstaffs.MagicStaffs;
 import de.zekro.magicstaffs.tools.GenericStaff;
 import de.zekro.magicstaffs.util.ConfigEntry;
 import de.zekro.magicstaffs.util.Vec3dUtils;
+import net.minecraft.block.state.IBlockState;
 import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.player.EntityPlayer;
+import net.minecraft.init.Blocks;
 import net.minecraft.init.SoundEvents;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.*;
 import net.minecraft.util.math.AxisAlignedBB;
+import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.Vec3d;
 import net.minecraft.world.World;
 
@@ -99,10 +102,12 @@ public class FireStaff extends GenericStaff {
                         cPos.x - 1, cPos.y - 1, cPos.z - 1,
                         cPos.x + 1, cPos.y + 1, cPos.z + 1);
 
+                if (!world.getBlockState(new BlockPos(cPos.x, cPos.y, cPos.z)).getBlock().equals(Blocks.AIR))
+                    break;
+
                 world.getEntitiesInAABBexcluding(player, AABB, entity -> entity instanceof EntityLivingBase)
                         .forEach(entity -> {
                             entity.setFire(burnDuration);
-                            System.out.println(entity.getDisplayName());
                         });
             }
 

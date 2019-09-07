@@ -2,6 +2,7 @@ package de.zekro.magicstaffs.crafting.infuser;
 
 import de.zekro.magicstaffs.MagicStaffs;
 import de.zekro.magicstaffs.crafting.infuser.recipes.StaffRecipe;
+import de.zekro.magicstaffs.util.ItemUtils;
 import net.minecraft.inventory.InventoryCrafting;
 import net.minecraft.item.ItemStack;
 import net.minecraft.item.crafting.IRecipe;
@@ -9,6 +10,7 @@ import net.minecraft.util.NonNullList;
 import net.minecraft.world.World;
 
 import javax.annotation.Nullable;
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
@@ -17,10 +19,15 @@ import java.util.List;
  */
 public class InfuserCraftingManager {
 
-    private static final List<IRecipe> REGISTRY = Arrays.asList(
-            new StaffRecipe(MagicStaffs.ELECTRIC_STAFF),
-            new StaffRecipe(MagicStaffs.FIRE_STAFF)
-    );
+    private static List<IRecipe> registry = new ArrayList<>();
+
+    /**
+     * Initialize recipe registry.
+     */
+    public static void init() {
+        ItemUtils.getRegisteredStaffs()
+                .forEach(staff -> registry.add(new StaffRecipe(staff)));
+    }
 
     /**
      * Find matching registered recipe by passed crafting matrix and world.
@@ -30,7 +37,7 @@ public class InfuserCraftingManager {
      */
     @Nullable
     public static IRecipe findMatchingRecipe(InventoryCrafting craftMatrix, World worldIn) {
-        return REGISTRY
+        return registry
                 .stream()
                 .filter(recipe -> recipe.matches(craftMatrix, worldIn))
                 .findFirst()

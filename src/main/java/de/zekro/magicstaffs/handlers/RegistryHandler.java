@@ -2,6 +2,7 @@ package de.zekro.magicstaffs.handlers;
 
 import de.zekro.magicstaffs.MagicStaffs;
 import de.zekro.magicstaffs.commands.CommandReloadConfig;
+import de.zekro.magicstaffs.crafting.infuser.InfuserCraftingManager;
 import de.zekro.magicstaffs.items.IHasModel;
 import net.minecraft.block.Block;
 import net.minecraft.item.Item;
@@ -32,8 +33,9 @@ public class RegistryHandler {
      * @param event
      */
     public static void preInitRegistries(FMLPreInitializationEvent event) {
-        MagicStaffs.configHandler = new ConfigHandler(event);
         initRegistries();
+        MagicStaffs.configHandler = new ConfigHandler(event);
+        InfuserCraftingManager.init();
     }
 
     /**
