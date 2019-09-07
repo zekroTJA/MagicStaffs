@@ -1,0 +1,16 @@
+{
+  "type": "minecraft:crafting_shapeless",
+
+  "ingredients": [
+    {
+      "item": "magicstaffs:electric_essence"
+    },
+    {
+      "item": "magicstaffs:fire_essence"
+    }
+  ],
+
+  "result": {
+    "item": "magicstaffs:magic_essence"
+  }
+}

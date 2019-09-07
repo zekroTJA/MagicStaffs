@@ -6,6 +6,7 @@ import de.zekro.magicstaffs.handlers.ConfigHandler;
 import de.zekro.magicstaffs.handlers.RegistryHandler;
 import de.zekro.magicstaffs.items.essences.ElectricEssence;
 import de.zekro.magicstaffs.items.essences.FireEssence;
+import de.zekro.magicstaffs.items.essences.MagicEssence;
 import de.zekro.magicstaffs.items.staffs.BaseStaff;
 import de.zekro.magicstaffs.proxy.CommonProxy;
 import de.zekro.magicstaffs.tools.GenericStaff;
@@ -48,6 +49,7 @@ public class MagicStaffs {
     public static final GenericStaff FIRE_STAFF = new FireStaff("fire_staff", CREATIVE_TAB);
 
     // ESSENCES
+    public static final Item MAGIC_ESSENCE = new MagicEssence("magic_essence", CREATIVE_TAB);
     public static final Item ELECTRIC_ESSENCE = new ElectricEssence("electric_essence", CREATIVE_TAB);
     public static final Item FIRE_ESSENCE = new FireEssence("fire_essence", CREATIVE_TAB);
 

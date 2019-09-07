@@ -68,7 +68,7 @@ public class ConfigHandler {
             essence.setRarity(mainConfig.getInt(
                     resourceName,
                     categoryRarity,
-                    10,
+                    essence.getRarity(),
                     0,
                     50,
                     "Spawn rarity for essence " + resourceName + "."

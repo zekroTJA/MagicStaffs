@@ -1,0 +1,25 @@
+{
+  "type": "minecraft:crafting_shaped",
+
+  "pattern": [
+    " E ",
+    "DOD",
+    "OOO"
+  ],
+
+  "key": {
+    "E": {
+      "item": "magicstaffs:magic_essence"
+    },
+    "D": {
+      "item": "minecraft:diamond"
+    },
+    "O": {
+      "item": "minecraft:obsidian"
+    }
+  },
+
+  "result": {
+    "item": "magicstaffs:infuser"
+  }
+}
