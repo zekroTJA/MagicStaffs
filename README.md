@@ -42,7 +42,7 @@ Then, the packages are located in the `./build/libs` location.
 ## Contributors
 
 Code is written by zekro.  
-Textures and models are created by luxtracon ([@luxtracon](https://twitter.com/luxtracon)) and zekro.
+Textures and models are created by luxtracon ([@luxtracon](https://twitter.com/luxtracon)) and zekro, and some are stolen and modified from the original Minecraft textures.
 
 ---
 
