@@ -8,11 +8,14 @@ import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityList;
 import net.minecraft.entity.EntityLivingBase;
+import net.minecraft.entity.EnumCreatureType;
+import net.minecraft.entity.monster.EntityMob;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.init.Blocks;
 import net.minecraft.init.SoundEvents;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
+import net.minecraft.tileentity.MobSpawnerBaseLogic;
 import net.minecraft.util.EnumHand;
 import net.minecraft.util.EnumParticleTypes;
 import net.minecraft.util.SoundCategory;
@@ -50,6 +53,26 @@ public class LifeStaff extends GenericStaff {
         super(name, tabs);
     }
 
+    /**
+     * Filter function returning true if passed entity is
+     * either a living entity which is not a monster or
+     * a player.
+     * @param entity entity
+     * @return true if friendly living entity or player
+     */
+    private boolean friendlyAndPlayerFilter(Entity entity) {
+        if (entity instanceof EntityLivingBase && !entity.isCreatureType(EnumCreatureType.MONSTER, false)) {
+            return true;
+        }
+
+        return entity instanceof EntityPlayer;
+    }
+
+    /**
+     * Heal the entity by the configured amount and
+     * extinguish the entity if enabled in config.
+     * @param entityLiving living entity
+     */
     private void doEntityEffect(EntityLivingBase entityLiving) {
         entityLiving.heal(healAmount);
         if (extinguish) entityLiving.extinguish();
@@ -82,7 +105,7 @@ public class LifeStaff extends GenericStaff {
 
             doEntityEffect(player);
 
-            world.getEntitiesInAABBexcluding(player, AABB, entity -> entity instanceof EntityPlayer)
+            world.getEntitiesInAABBexcluding(player, AABB, this::friendlyAndPlayerFilter)
                     .forEach(entity -> doEntityEffect((EntityLivingBase) entity));
         }
     }
