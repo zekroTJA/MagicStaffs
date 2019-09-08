@@ -119,19 +119,21 @@ public abstract class GenericStaff extends ItemBase {
                         player, player.posX, player.posY, player.posZ,
                         SoundEvents.ENTITY_ITEM_BREAK, SoundCategory.PLAYERS,
                         1F, 1F);
-        } else {
+        }
+
+        clickAction(world, player, hand);
+
+        if (!world.isRemote) {
             if (!coolDownClient.take(world))
                 return super.onItemRightClick(world, player, hand);
 
             if (!player.isCreative()) {
-                setDamage(itemStack, itemStack.getItemDamage() + 1);
-
                 if (getMaxDamage(itemStack) <= itemStack.getItemDamage())
                     return new ActionResult<>(EnumActionResult.SUCCESS, ItemStack.EMPTY);
+
+                setDamage(itemStack, itemStack.getItemDamage() + 1);
             }
         }
-
-        clickAction(world, player, hand);
 
         return super.onItemRightClick(world, player, hand);
     }

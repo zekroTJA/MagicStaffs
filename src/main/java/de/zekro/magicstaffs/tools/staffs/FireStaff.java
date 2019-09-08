@@ -25,7 +25,7 @@ import java.util.List;
 import java.util.Random;
 
 /**
- * Electric Staff Tool Item Class.
+ * Fire Staff Tool Item Class.
  */
 public class FireStaff extends GenericStaff {
 
@@ -74,12 +74,6 @@ public class FireStaff extends GenericStaff {
                         randPos.x, randPos.y, randPos.z,
                         randAimVelocity.x, randAimVelocity.y, randAimVelocity.z);
             }
-
-            if (getMaxDamage(itemStack) <= itemStack.getItemDamage())
-                world.playSound(
-                        player, player.posX, player.posY, player.posZ,
-                        SoundEvents.ENTITY_ITEM_BREAK, SoundCategory.PLAYERS,
-                        1F, 1F);
         } else {
             for (int i = 0; i < effectiveRange; ++i) {
                 final Vec3d cPos = new Vec3d(
@@ -109,7 +103,6 @@ public class FireStaff extends GenericStaff {
 
     @Override
     public List<ConfigEntry> getInitializedConfigEntries() {
-        List<ConfigEntry> l = new ArrayList<>();
         return Arrays.asList(
                 new ConfigEntry<>(CONFIG_ENTRY_EFFECTIVE_RANGE, 10, 1, 100, "The range, in blocks, the staff ignites enemies."),
                 new ConfigEntry<>(CONFIG_ENTRY_BURN_DURATION, 10, 1, Integer.MAX_VALUE, "The time an ignited enemy is burning."),

@@ -4,7 +4,6 @@ import de.zekro.magicstaffs.blocks.infuser.slots.SlotInfuserEssenceInput;
 import de.zekro.magicstaffs.blocks.infuser.slots.SlotInfuserOutput;
 import de.zekro.magicstaffs.blocks.infuser.slots.SlotInfuserStaffInput;
 import de.zekro.magicstaffs.crafting.infuser.InfuserCraftingManager;
-import mcp.MethodsReturnNonnullByDefault;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.entity.player.EntityPlayerMP;
 import net.minecraft.entity.player.InventoryPlayer;

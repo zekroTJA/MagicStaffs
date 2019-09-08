@@ -114,7 +114,13 @@ public class ConfigHandler {
                         cfg.getFloat(entry.getKey(), cat, (float) entry.getDef(),
                                 (float) entry.getMin(), (float) entry.getMax(), entry.getComment())
                 );
+            } else if (entry.getDef() instanceof Boolean) {
+                entry.setCollected(
+                        cfg.getBoolean(entry.getKey(), cat,
+                                (boolean) entry.getDef(), entry.getComment())
+                );
             }
+
             staff.configInitialized();
         });
 
