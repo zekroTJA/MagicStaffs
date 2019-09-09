@@ -1,6 +1,7 @@
 package de.zekro.magicstaffs.tools.staffs;
 
 import de.zekro.magicstaffs.MagicStaffs;
+import de.zekro.magicstaffs.handlers.SoundHandler;
 import de.zekro.magicstaffs.tools.GenericStaff;
 import de.zekro.magicstaffs.util.ConfigEntry;
 import de.zekro.magicstaffs.util.Vec3dUtils;
@@ -19,6 +20,7 @@ import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.Vec3d;
 import net.minecraft.world.World;
 
+import javax.annotation.Nullable;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
@@ -119,5 +121,11 @@ public class FireStaff extends GenericStaff {
         particleSpread = (float) getConfigEntryByKey(CONFIG_ENTRY_PARTICLE_SPREAD).getCollected();
 
         super.configInitialized();
+    }
+
+    @Nullable
+    @Override
+    public SoundEvent getSound() {
+        return SoundHandler.FIRE_STAFF_ACTIVATE;
     }
 }

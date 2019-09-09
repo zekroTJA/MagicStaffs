@@ -4,6 +4,7 @@ import de.zekro.magicstaffs.blocks.infuser.BlockInfuser;
 import de.zekro.magicstaffs.creativetab.CreativeTab;
 import de.zekro.magicstaffs.handlers.ConfigHandler;
 import de.zekro.magicstaffs.handlers.RegistryHandler;
+import de.zekro.magicstaffs.handlers.SoundHandler;
 import de.zekro.magicstaffs.items.essences.ElectricEssence;
 import de.zekro.magicstaffs.items.essences.FireEssence;
 import de.zekro.magicstaffs.items.essences.LifeEssence;
@@ -20,6 +21,7 @@ import net.minecraft.item.ItemStack;
 import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.common.Mod.EventHandler;
 import net.minecraftforge.fml.common.SidedProxy;
+import net.minecraftforge.fml.common.event.FMLInitializationEvent;
 import net.minecraftforge.fml.common.event.FMLPreInitializationEvent;
 import net.minecraftforge.fml.common.event.FMLServerStartingEvent;
 
@@ -80,6 +82,11 @@ public class MagicStaffs {
     @EventHandler
     public void preInit(FMLPreInitializationEvent event) {
         RegistryHandler.preInitRegistries(event);
+    }
+
+    @EventHandler
+    public void init(FMLInitializationEvent event) {
+        SoundHandler.registerSounds();
     }
 
     // Server-init event handler

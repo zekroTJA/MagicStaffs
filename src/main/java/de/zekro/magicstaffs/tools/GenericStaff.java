@@ -1,5 +1,6 @@
 package de.zekro.magicstaffs.tools;
 
+import de.zekro.magicstaffs.handlers.SoundHandler;
 import de.zekro.magicstaffs.items.ItemBase;
 import de.zekro.magicstaffs.util.ConfigEntry;
 import de.zekro.magicstaffs.util.CoolDown;
@@ -8,10 +9,7 @@ import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.init.SoundEvents;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
-import net.minecraft.util.ActionResult;
-import net.minecraft.util.EnumActionResult;
-import net.minecraft.util.EnumHand;
-import net.minecraft.util.SoundCategory;
+import net.minecraft.util.*;
 import net.minecraft.world.World;
 
 import javax.annotation.Nullable;
@@ -68,15 +66,6 @@ public abstract class GenericStaff extends ItemBase {
     protected abstract List<ConfigEntry> getInitializedConfigEntries();
 
     /**
-     * Runs when all configurations were read from file and set
-     * to initialized ConfigEntries.
-     */
-    public void configInitialized() {
-        setClientServerCoolDown((int) getConfigEntryByKey(CONFIG_ENTRY_COOL_DOWN).getCollected());
-        setMaxDamage((int) getConfigEntryByKey(CONFIG_ENTRY_DURABILITY).getCollected());
-    }
-
-    /**
      * Action performed on item right click when not on cool down.
      * This will be called twice, once for the server and once for
      * the client world.
@@ -95,6 +84,14 @@ public abstract class GenericStaff extends ItemBase {
     }
 
     /**
+     * Returns the registered sound event when the
+     * staff is activated.
+     * @return sound event
+     */
+    @Nullable
+    public abstract SoundEvent getSound();
+
+    /**
      * Sets the cool down values for the client and the
      * server cool down handlers.
      * @param coolDown cool down in world ticks
@@ -102,6 +99,15 @@ public abstract class GenericStaff extends ItemBase {
     public void setClientServerCoolDown(long coolDown) {
         coolDownClient.setCoolDown(coolDown);
         coolDownServer.setCoolDown(coolDown);
+    }
+
+    /**
+     * Runs when all configurations were read from file and set
+     * to initialized ConfigEntries.
+     */
+    public void configInitialized() {
+        setClientServerCoolDown((int) getConfigEntryByKey(CONFIG_ENTRY_COOL_DOWN).getCollected());
+        setMaxDamage((int) getConfigEntryByKey(CONFIG_ENTRY_DURABILITY).getCollected());
     }
 
     @Override
@@ -112,7 +118,13 @@ public abstract class GenericStaff extends ItemBase {
             if (!coolDownServer.take(world))
                 return super.onItemRightClick(world, player, hand);
 
-            // TODO: Play custom sound
+            final SoundEvent sound = getSound();
+            if (sound != null) {
+                world.playSound(
+                        player, player.posX, player.posY, player.posZ,
+                        sound, SoundCategory.PLAYERS,
+                        1f, 1f);
+            }
 
             if (getMaxDamage(itemStack) <= itemStack.getItemDamage())
                 world.playSound(

@@ -19,11 +19,13 @@ import net.minecraft.tileentity.MobSpawnerBaseLogic;
 import net.minecraft.util.EnumHand;
 import net.minecraft.util.EnumParticleTypes;
 import net.minecraft.util.SoundCategory;
+import net.minecraft.util.SoundEvent;
 import net.minecraft.util.math.AxisAlignedBB;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.Vec3d;
 import net.minecraft.world.World;
 
+import javax.annotation.Nullable;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
@@ -133,5 +135,11 @@ public class LifeStaff extends GenericStaff {
         extinguish = (boolean) getConfigEntryByKey(CONFIG_ENTRY_EXTINGUISH).getCollected();
 
         super.configInitialized();
+    }
+
+    @Nullable
+    @Override
+    public SoundEvent getSound() {
+        return null;
     }
 }

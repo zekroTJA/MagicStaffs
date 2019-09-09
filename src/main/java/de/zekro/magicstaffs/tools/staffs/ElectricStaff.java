@@ -1,6 +1,7 @@
 package de.zekro.magicstaffs.tools.staffs;
 
 import de.zekro.magicstaffs.MagicStaffs;
+import de.zekro.magicstaffs.handlers.SoundHandler;
 import de.zekro.magicstaffs.tools.GenericStaff;
 import de.zekro.magicstaffs.util.ConfigEntry;
 import de.zekro.magicstaffs.util.Vec3dUtils;
@@ -8,9 +9,12 @@ import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.Item;
 import net.minecraft.util.EnumHand;
+import net.minecraft.util.SoundCategory;
+import net.minecraft.util.SoundEvent;
 import net.minecraft.util.math.Vec3d;
 import net.minecraft.world.World;
 
+import javax.annotation.Nullable;
 import java.util.Collections;
 import java.util.List;
 
@@ -61,5 +65,11 @@ public class ElectricStaff extends GenericStaff {
         acceleration = (float) getConfigEntryByKey(CONFIG_ENTRY_ACCELERATION).getCollected();
 
         super.configInitialized();
+    }
+
+    @Nullable
+    @Override
+    public SoundEvent getSound() {
+        return SoundHandler.ELECTRIC_STAFF_ACTIVATE;
     }
 }

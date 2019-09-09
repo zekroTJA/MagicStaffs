@@ -22,7 +22,7 @@ import net.minecraftforge.fml.common.network.NetworkRegistry;
 public class RegistryHandler {
 
     /**
-     * Initialize mdo instance registrations.
+     * Initialize mod instance registrations.
      */
     public static void initRegistries() {
         NetworkRegistry.INSTANCE.registerGuiHandler(MagicStaffs.instance, new GuiHandler());
