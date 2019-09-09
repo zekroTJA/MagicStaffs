@@ -1,7 +1,9 @@
 {
-  "variants": {
-    "normal": {
-      "model": "magicstaffs:infuser"
-    }
+  "variants":
+  {
+    "facing=north": { "model": "magicstaffs:infuser", "y": 180 },
+    "facing=east": { "model": "magicstaffs:infuser", "y": 270 },
+    "facing=south": { "model": "magicstaffs:infuser", "y": 0 },
+    "facing=west": { "model": "magicstaffs:infuser", "y": 90 }
   }
 }
