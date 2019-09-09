@@ -1,7 +1,4 @@
-# MagicStaffs &nbsp; [![](https://travis-ci.org/zekroTJA/MagicStaffs.svg?branch=master)](https://travis-ci.org/zekroTJA/MagicStaffs) [![GitHub release (latest by date including pre-releases)](https://img.shields.io/github/v/release/zekroTJA/MagicStaffs?include_prereleases)](https://github.com/zekroTJA/MagicStaffs/releases)
-
-> **ATTENTION**  
-> This project is in a very early WIP status and not that usable at the moment.
+# MagicStaffs &nbsp; [![](https://travis-ci.org/zekroTJA/MagicStaffs.svg?branch=master)](https://travis-ci.org/zekroTJA/MagicStaffs) [![GitHub release (latest by date including pre-releases)](https://img.shields.io/github/v/release/zekroTJA/MagicStaffs?include_prereleases)](https://github.com/zekroTJA/MagicStaffs/releases) [![](https://img.shields.io/badge/On-CursForge-9e0cce)](https://www.curseforge.com/minecraft/mc-mods/magicstaffs)
 
 A Minecraft Forge modification implementing magic staffs like an electric, medic, poisson or fire staff. This modification is created as adaption to the staffs from the [Better Dungeons](https://www.curseforge.com/minecraft/mc-mods/better-dungeons) mod which is no longer maintained for versions beyond Minecraft 1.7.x.
 
@@ -42,7 +39,7 @@ Then, the packages are located in the `./build/libs` location.
 ## Contributors
 
 Code is written by zekro.  
-Textures and models are created by luxtracon ([@luxtracon](https://twitter.com/luxtracon)) and zekro.
+Textures and models are created by luxtracon ([@luxtracon](https://twitter.com/luxtracon)) and zekro, and some are stolen and modified from the original Minecraft textures.
 
 ---
 
