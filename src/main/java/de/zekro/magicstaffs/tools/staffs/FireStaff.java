@@ -2,9 +2,10 @@ package de.zekro.magicstaffs.tools.staffs;
 
 import de.zekro.magicstaffs.MagicStaffs;
 import de.zekro.magicstaffs.handlers.SoundHandler;
+import de.zekro.magicstaffs.shared.StaffUtil;
 import de.zekro.magicstaffs.tools.GenericStaff;
-import de.zekro.magicstaffs.util.ConfigEntry;
-import de.zekro.magicstaffs.util.Vec3dUtils;
+import de.zekro.magicstaffs.shared.ConfigEntry;
+import de.zekro.magicstaffs.shared.Vec3dUtils;
 import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.player.EntityPlayer;
@@ -71,24 +72,9 @@ public class FireStaff extends GenericStaff {
                         randAimVelocity.x, randAimVelocity.y, randAimVelocity.z);
             }
         } else {
-            for (int i = 0; i < effectiveRange; ++i) {
-                final Vec3d cPos = new Vec3d(
-                        playerPos.x + (aim.x * i),
-                        playerPos.y + (aim.y * i),
-                        playerPos.z + (aim.z * i));
-
-                final AxisAlignedBB AABB = new AxisAlignedBB(
-                        cPos.x - 1, cPos.y - 1, cPos.z - 1,
-                        cPos.x + 1, cPos.y + 1, cPos.z + 1);
-
-                if (!world.getBlockState(new BlockPos(cPos.x, cPos.y, cPos.z)).getBlock().equals(Blocks.AIR))
-                    break;
-
-                world.getEntitiesInAABBexcluding(player, AABB, entity -> entity instanceof EntityLivingBase)
-                        .forEach(entity -> {
-                            entity.setFire(burnDuration);
-                        });
-            }
+            StaffUtil.getEntitiesInAimDirection(effectiveRange, player, world, entity -> entity instanceof EntityLivingBase)
+                    .forEach(entity ->
+                        entity.setFire(burnDuration));
         }
     }
 

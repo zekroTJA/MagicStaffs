@@ -1,7 +1,7 @@
 package de.zekro.magicstaffs.crafting.infuser;
 
 import de.zekro.magicstaffs.crafting.infuser.recipes.StaffRecipe;
-import de.zekro.magicstaffs.util.ItemUtils;
+import de.zekro.magicstaffs.shared.ItemUtils;
 import net.minecraft.inventory.InventoryCrafting;
 import net.minecraft.item.ItemStack;
 import net.minecraft.item.crafting.IRecipe;

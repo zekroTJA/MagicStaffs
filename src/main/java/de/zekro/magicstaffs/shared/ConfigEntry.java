@@ -1,4 +1,4 @@
-package de.zekro.magicstaffs.util;
+package de.zekro.magicstaffs.shared;
 
 /**
  * Container for a Configuration entry.
