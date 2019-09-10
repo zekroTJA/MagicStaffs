@@ -34,7 +34,6 @@ public class GuiInfuser extends GuiContainer {
     @Override
     protected void drawGuiContainerForegroundLayer(int mouseX, int mouseY) {
         String tileName = entity.getDisplayName().getUnformattedText();
-//        fontRenderer.drawString(tileName, (xSize / 2 - fontRenderer.getStringWidth(tileName) / 2) + 3, 8, 4210752);
         fontRenderer.drawString(tileName, 8, 8, 4210752);
         fontRenderer.drawString(player.getDisplayName().getUnformattedText(), 8, 81 - 10, 4210752);
     }
