@@ -1,6 +1,5 @@
 package de.zekro.magicstaffs.tools;
 
-import de.zekro.magicstaffs.handlers.SoundHandler;
 import de.zekro.magicstaffs.items.ItemBase;
 import de.zekro.magicstaffs.util.ConfigEntry;
 import de.zekro.magicstaffs.util.CoolDown;
