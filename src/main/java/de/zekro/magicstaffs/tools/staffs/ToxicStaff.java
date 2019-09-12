@@ -75,7 +75,7 @@ public class ToxicStaff extends GenericStaff {
 
     @Override
     public Item getEssenceMadeOf() {
-        return MagicStaffs.LIFE_ESSENCE;
+        return MagicStaffs.TOXIC_ESSENCE;
     }
 
     @Override
