@@ -2,7 +2,7 @@ package de.zekro.magicstaffs.handlers;
 
 import de.zekro.magicstaffs.MagicStaffs;
 import de.zekro.magicstaffs.tools.GenericStaff;
-import de.zekro.magicstaffs.util.ItemUtils;
+import de.zekro.magicstaffs.shared.ItemUtils;
 import net.minecraft.item.Item;
 import net.minecraft.util.Tuple;
 import net.minecraftforge.common.config.Configuration;

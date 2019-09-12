@@ -1,7 +1,7 @@
 package de.zekro.magicstaffs.commands;
 
 import de.zekro.magicstaffs.MagicStaffs;
-import de.zekro.magicstaffs.util.CommandUtil;
+import de.zekro.magicstaffs.shared.CommandUtil;
 import net.minecraft.command.CommandBase;
 import net.minecraft.command.CommandException;
 import net.minecraft.command.ICommandSender;

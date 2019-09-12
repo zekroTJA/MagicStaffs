@@ -1,4 +1,4 @@
-package de.zekro.magicstaffs.util;
+package de.zekro.magicstaffs.shared;
 
 import net.minecraft.util.math.Vec3d;
 

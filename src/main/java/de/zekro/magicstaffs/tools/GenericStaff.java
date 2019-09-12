@@ -1,8 +1,8 @@
 package de.zekro.magicstaffs.tools;
 
 import de.zekro.magicstaffs.items.ItemBase;
-import de.zekro.magicstaffs.util.ConfigEntry;
-import de.zekro.magicstaffs.util.CoolDown;
+import de.zekro.magicstaffs.shared.ConfigEntry;
+import de.zekro.magicstaffs.shared.CoolDown;
 import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.init.SoundEvents;

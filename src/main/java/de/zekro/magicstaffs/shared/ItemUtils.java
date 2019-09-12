@@ -1,4 +1,4 @@
-package de.zekro.magicstaffs.util;
+package de.zekro.magicstaffs.shared;
 
 import de.zekro.magicstaffs.MagicStaffs;
 import de.zekro.magicstaffs.items.IEssence;
@@ -7,6 +7,9 @@ import de.zekro.magicstaffs.tools.GenericStaff;
 import java.util.ArrayList;
 import java.util.List;
 
+/**
+ * Provide utilities for Items.
+ */
 public class ItemUtils {
 
     /**

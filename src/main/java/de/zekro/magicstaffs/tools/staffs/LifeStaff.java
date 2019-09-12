@@ -2,7 +2,7 @@ package de.zekro.magicstaffs.tools.staffs;
 
 import de.zekro.magicstaffs.MagicStaffs;
 import de.zekro.magicstaffs.tools.GenericStaff;
-import de.zekro.magicstaffs.util.ConfigEntry;
+import de.zekro.magicstaffs.shared.ConfigEntry;
 import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityLivingBase;
