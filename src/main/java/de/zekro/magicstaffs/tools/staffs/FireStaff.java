@@ -9,11 +9,8 @@ import de.zekro.magicstaffs.shared.Vec3dUtils;
 import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.player.EntityPlayer;
-import net.minecraft.init.Blocks;
 import net.minecraft.item.Item;
 import net.minecraft.util.*;
-import net.minecraft.util.math.AxisAlignedBB;
-import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.Vec3d;
 import net.minecraft.world.World;
 
@@ -34,7 +31,7 @@ public class FireStaff extends GenericStaff {
 
     private int particleAmount = 100;
     private float particleSpread = 0.5f;
-    private int effectiveRange = 10;
+    private int effectiveRange = 6;
     private int burnDuration = 2;
 
     /**
@@ -86,7 +83,7 @@ public class FireStaff extends GenericStaff {
     @Override
     public List<ConfigEntry> getInitializedConfigEntries() {
         return Arrays.asList(
-                new ConfigEntry<>(CONFIG_ENTRY_EFFECTIVE_RANGE, 10, 1, 100, "The range, in blocks, the staff ignites enemies."),
+                new ConfigEntry<>(CONFIG_ENTRY_EFFECTIVE_RANGE, 6, 1, 100, "The range, in blocks, the staff ignites enemies."),
                 new ConfigEntry<>(CONFIG_ENTRY_BURN_DURATION, 10, 1, Integer.MAX_VALUE, "The time an ignited enemy is burning."),
                 new ConfigEntry<>(CONFIG_ENTRY_PARTICLE_AMOUNT, 100, 1, 1000, "The amount of particles created on each use. (Only cosmetic)"),
                 new ConfigEntry<>(CONFIG_ENTRY_PARTICLE_SPREAD, 0.5f, 0f, 1f, "The random particle spread multiplier. (Only cosmetic)")
