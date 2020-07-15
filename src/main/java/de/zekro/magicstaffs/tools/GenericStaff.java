@@ -122,7 +122,7 @@ public abstract class GenericStaff extends ItemBase {
                 world.playSound(
                         player, player.posX, player.posY, player.posZ,
                         sound, SoundCategory.PLAYERS,
-                        1f, 1f);
+                        0.6f, 1f);
             }
 
             if (getMaxDamage(itemStack) <= itemStack.getItemDamage())
