@@ -1,6 +1,7 @@
 package de.zekro.magicstaffs.tools.staffs;
 
 import de.zekro.magicstaffs.MagicStaffs;
+import de.zekro.magicstaffs.handlers.SoundHandler;
 import de.zekro.magicstaffs.shared.StaffUtil;
 import de.zekro.magicstaffs.shared.Vec3dUtils;
 import de.zekro.magicstaffs.tools.GenericStaff;
@@ -99,7 +100,6 @@ public class ToxicStaff extends GenericStaff {
     @Nullable
     @Override
     public SoundEvent getSound() {
-        // TODO: add sound
-        return null;
+        return SoundHandler.TOXIC_STAFF_ACTIVATE;
     }
 }

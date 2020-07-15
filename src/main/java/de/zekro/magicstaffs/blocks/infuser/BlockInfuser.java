@@ -26,7 +26,7 @@ import java.util.Random;
  */
 public class BlockInfuser extends BlockBase implements ITileEntityProvider {
 
-    private static final AxisAlignedBB AABB = new AxisAlignedBB(0.0D, 0.0D, 0.0D, 1.0D, 0.75D, 1.0D);
+    private static final AxisAlignedBB AxisAlignment = new AxisAlignedBB(0.0D, 0.0D, 0.0D, 1.0D, 0.75D, 1.0D);
 
     /**
      * Create block instance of Infusion Table.
@@ -42,7 +42,7 @@ public class BlockInfuser extends BlockBase implements ITileEntityProvider {
 
     @Override
     public AxisAlignedBB getBoundingBox(IBlockState state, IBlockAccess source, BlockPos pos) {
-        return AABB;
+        return AxisAlignment;
     }
 
     @Override

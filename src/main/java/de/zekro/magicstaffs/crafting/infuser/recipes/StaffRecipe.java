@@ -15,7 +15,7 @@ import javax.annotation.Nullable;
  */
 public class StaffRecipe implements IRecipe {
 
-    private GenericStaff staff;
+    private final GenericStaff staff;
 
     /**
      * Create new instance of StaffRecipe.

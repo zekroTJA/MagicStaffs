@@ -16,7 +16,8 @@ import net.minecraftforge.items.ItemStackHandler;
  */
 public class TileEntityInfuser extends TileEntity {
 
-    private ItemStackHandler handler = new ItemStackHandler(3);
+    private final ItemStackHandler handler = new ItemStackHandler(3);
+
     private String customName;
 
     /**

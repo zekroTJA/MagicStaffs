@@ -25,7 +25,7 @@ public class RegistryHandler {
      * Initialize mod instance registrations.
      */
     public static void initRegistries() {
-        NetworkRegistry.INSTANCE.registerGuiHandler(MagicStaffs.instance, new GuiHandler());
+        NetworkRegistry.INSTANCE.registerGuiHandler(MagicStaffs.instance, new GUIHandler());
     }
 
     /**

@@ -30,7 +30,7 @@ public class CommandReloadConfig extends CommandBase {
     }
 
     @Override
-    public void execute(MinecraftServer server, ICommandSender sender, String[] args) throws CommandException {
+    public void execute(MinecraftServer server, ICommandSender sender, String[] args) {
         if (!MagicStaffs.configHandler.hotReloadActive) {
             sender.sendMessage(new TextComponentString(
                     CommandUtil.getMessagePrefix() + TextFormatting.RED +

@@ -8,6 +8,8 @@ import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemBlock;
 
+import java.util.Objects;
+
 /**
  * Base class for generic blocks.
  */
@@ -25,13 +27,13 @@ public class BlockBase extends Block implements IHasModel {
      */
     public BlockBase(String name, Material material, CreativeTabs tabs) {
         super(material);
-        setUnlocalizedName(name);
-        setRegistryName(name);
+        this.setUnlocalizedName(name);
+        this.setRegistryName(name);
 
-        setCreativeTab(tabs != null ? tabs : CreativeTabs.MISC);
+        this.setCreativeTab(tabs != null ? tabs : CreativeTabs.MISC);
 
         MagicStaffs.BLOCKS.add(this);
-        MagicStaffs.ITEMS.add(new ItemBlock(this).setRegistryName(this.getRegistryName()));
+        MagicStaffs.ITEMS.add(new ItemBlock(this).setRegistryName(Objects.requireNonNull(this.getRegistryName())));
     }
 
     @Override

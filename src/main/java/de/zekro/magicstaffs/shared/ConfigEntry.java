@@ -6,8 +6,9 @@ package de.zekro.magicstaffs.shared;
  */
 public class ConfigEntry<T> {
 
-    private String key, comment;
-    private T def, max, min, collected;
+    private final String key, comment;
+    private final T def, max, min;
+    private T collected;
 
     /**
      * Create a new instance of ConfigEntry.

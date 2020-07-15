@@ -17,7 +17,7 @@ import java.util.List;
  */
 public class InfuserCraftingManager {
 
-    private static List<IRecipe> registry = new ArrayList<>();
+    private static final List<IRecipe> registry = new ArrayList<>();
 
     /**
      * Initialize recipe registry.

@@ -1,6 +1,7 @@
 package de.zekro.magicstaffs.tools.staffs;
 
 import de.zekro.magicstaffs.MagicStaffs;
+import de.zekro.magicstaffs.handlers.SoundHandler;
 import de.zekro.magicstaffs.tools.GenericStaff;
 import de.zekro.magicstaffs.shared.ConfigEntry;
 import net.minecraft.creativetab.CreativeTabs;
@@ -103,13 +104,13 @@ public class LifeStaff extends GenericStaff {
             }
 
         } else {
-            final AxisAlignedBB AABB = new AxisAlignedBB(
+            final AxisAlignedBB section = new AxisAlignedBB(
                     player.posX - effectiveRange, player.posY, player.posZ - effectiveRange,
                     player.posX + effectiveRange, player.posY + 4, player.posZ + effectiveRange);
 
             doEntityEffect(player);
 
-            world.getEntitiesInAABBexcluding(player, AABB, this::friendlyAndPlayerFilter)
+            world.getEntitiesInAABBexcluding(player, section, this::friendlyAndPlayerFilter)
                     .forEach(entity -> doEntityEffect((EntityLivingBase) entity));
         }
     }
@@ -144,7 +145,6 @@ public class LifeStaff extends GenericStaff {
     @Nullable
     @Override
     public SoundEvent getSound() {
-        // TODO: add sound
-        return null;
+        return SoundHandler.HEAL_STAFF_ACTIVATE;
     }
 }

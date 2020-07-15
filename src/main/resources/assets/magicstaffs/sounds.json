@@ -17,5 +17,25 @@
       { "name": "magicstaffs:staffs/fire/activate2", "stream": true },
       { "name": "magicstaffs:staffs/fire/activate3", "stream": true }
     ]
+  },
+
+  "staffs.heal.activate": {
+    "category": "item",
+    "subtitle": "staffs.heal.activate",
+    "sounds": [
+      { "name": "magicstaffs:staffs/heal/activate1", "stream": true },
+      { "name": "magicstaffs:staffs/heal/activate2", "stream": true },
+      { "name": "magicstaffs:staffs/heal/activate3", "stream": true }
+    ]
+  },
+
+  "staffs.toxic.activate": {
+    "category": "item",
+    "subtitle": "staffs.toxic.activate",
+    "sounds": [
+      { "name": "magicstaffs:staffs/toxic/activate1", "stream": true },
+      { "name": "magicstaffs:staffs/toxic/activate2", "stream": true },
+      { "name": "magicstaffs:staffs/toxic/activate3", "stream": true }
+    ]
   }
 }

@@ -21,10 +21,10 @@ public class ContainerInfuser extends Container {
     private final TileEntityInfuser entity;
     private final InventoryCraftResult result = new InventoryCraftResult();
 
-    private World world;
-    private EntityPlayer player;
+    private final World world;
+    private final EntityPlayer player;
 
-    private InventoryCrafting craftMatrix = new InventoryCrafting(this, 3, 1);
+    private final InventoryCrafting craftMatrix = new InventoryCrafting(this, 3, 1);
 
     /**
      * Create new instance of the container.
@@ -36,20 +36,20 @@ public class ContainerInfuser extends Container {
         this.player = player.player;
         this.entity = entity;
 
-        addSlotToContainer(new SlotInfuserOutput(player.player, craftMatrix, result, 0, 127, 33));
-        addSlotToContainer(new SlotInfuserStaffInput(craftMatrix, 1, 27, 33));
-        addSlotToContainer(new SlotInfuserEssenceInput(craftMatrix, 2, 57, 33));
+        this.addSlotToContainer(new SlotInfuserOutput(player.player, craftMatrix, result, 0, 127, 33));
+        this.addSlotToContainer(new SlotInfuserStaffInput(craftMatrix, 1, 27, 33));
+        this.addSlotToContainer(new SlotInfuserEssenceInput(craftMatrix, 2, 57, 33));
 
         // Inventory
         for (int y = 0; y < 3; ++y) {
             for (int x = 0; x < 9; ++x) {
-                addSlotToContainer(new Slot(player, x + y * 9 + 9, 8 + x * 18, 84 + y * 18));
+                this.addSlotToContainer(new Slot(player, x + y * 9 + 9, 8 + x * 18, 84 + y * 18));
             }
         }
 
         // Hot Bar
         for (int x = 0; x < 9; ++x) {
-            addSlotToContainer(new Slot(player, x, 8 + x * 18, 142));
+            this.addSlotToContainer(new Slot(player, x, 8 + x * 18, 142));
         }
     }
 
@@ -61,17 +61,17 @@ public class ContainerInfuser extends Container {
     @Override
     protected void slotChangedCraftingGrid(World world, EntityPlayer player, InventoryCrafting matrix, InventoryCraftResult result) {
         if (!world.isRemote) {
-            EntityPlayerMP entityplayermp = (EntityPlayerMP) player;
-            ItemStack itemstack = ItemStack.EMPTY;
-            IRecipe irecipe = InfuserCraftingManager.findMatchingRecipe(matrix, world);
+            EntityPlayerMP entityPlayerMP = (EntityPlayerMP) player;
+            ItemStack itemStack = ItemStack.EMPTY;
+            IRecipe recipe = InfuserCraftingManager.findMatchingRecipe(matrix, world);
 
-            if (irecipe != null) {
-                result.setRecipeUsed(irecipe);
-                itemstack = irecipe.getCraftingResult(matrix);
+            if (recipe != null) {
+                result.setRecipeUsed(recipe);
+                itemStack = recipe.getCraftingResult(matrix);
             }
 
-            result.setInventorySlotContents(0, itemstack);
-            entityplayermp.connection.sendPacket(new SPacketSetSlot(windowId, 0, itemstack));
+            result.setInventorySlotContents(0, itemStack);
+            entityPlayerMP.connection.sendPacket(new SPacketSetSlot(windowId, 0, itemStack));
         }
     }
 
