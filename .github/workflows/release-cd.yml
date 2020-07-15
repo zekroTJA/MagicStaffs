@@ -28,12 +28,12 @@ jobs:
       run: chmod +x gradlew
     
     - name: Build with Gradle
-      run: ./gradlew build
+      run: ./gradlew jar
 
     - name: Deploy to Releases
       env:
         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
       run: 'hub release create 
-              -a ./build/libs/*.jar
+              -a build/libs/*.jar
               -m "$(git describe --tags --abbrev=0)"
               $(git describe --tags --abbrev=0)'
