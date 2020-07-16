@@ -30,7 +30,7 @@ public abstract class GenericStaff extends ItemBase {
     protected CoolDown coolDownClient = new CoolDown(DEFAULT_ACTION_COOL_DOWN);
     protected CoolDown coolDownServer = new CoolDown(DEFAULT_ACTION_COOL_DOWN);
 
-    private List<ConfigEntry> configEntries = new ArrayList<>(Arrays.asList(
+    private final List<ConfigEntry> configEntries = new ArrayList<>(Arrays.asList(
             new ConfigEntry<>(CONFIG_ENTRY_COOL_DOWN, 5, 0, Integer.MAX_VALUE, "The cool down until the staff can be re used."),
             new ConfigEntry<>(CONFIG_ENTRY_DURABILITY, 64, 0, Integer.MAX_VALUE, "The durability of the staff.")
     ));

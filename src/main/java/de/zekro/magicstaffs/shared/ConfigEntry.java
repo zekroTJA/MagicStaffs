@@ -1,5 +1,7 @@
 package de.zekro.magicstaffs.shared;
 
+import javax.annotation.Nullable;
+
 /**
  * Container for a Configuration entry.
  * @param <T> Value Type of the entry
@@ -11,14 +13,24 @@ public class ConfigEntry<T> {
     private T collected;
 
     /**
-     * Create a new instance of ConfigEntry.
+     * Creates a new instance of ConfigEntry.
+     * @param key key name of the entry
+     * @param defaultValue default value
+     * @param comment entry comment
+     */
+    public ConfigEntry(String key, T defaultValue, String comment) {
+        this(key, defaultValue, null, null, comment);
+    }
+
+    /**
+     * Creates a new instance of ConfigEntry.
      * @param key key name of the entry
      * @param defaultValue default value
      * @param minValue minimum value
      * @param maxValue maximum value
-     * @param comment Entry comment
+     * @param comment entry comment
      */
-    public ConfigEntry(String key, T defaultValue, T minValue, T maxValue, String comment) {
+    public ConfigEntry(String key, T defaultValue, @Nullable T minValue, @Nullable T maxValue, String comment) {
         this.key = key;
         this.def = defaultValue;
         this.min = minValue;
