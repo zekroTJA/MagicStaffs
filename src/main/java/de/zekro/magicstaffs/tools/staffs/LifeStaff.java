@@ -92,7 +92,7 @@ public class LifeStaff extends GenericStaff {
         if (world.isRemote) {
 
             for (int i = 0; i < particleAmount; ++i) {
-                Vec3d randPos = playerPos.addVector(
+                Vec3d randPos = playerPos.add(
                         (rand.nextDouble() - 0.5) * 2 * 2 * effectiveRange,
                         rand.nextDouble() * 5 - 2,
                         (rand.nextDouble() - 0.5) * 2 * 2 * effectiveRange);

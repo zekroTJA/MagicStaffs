@@ -17,6 +17,11 @@ public class CreativeTab extends CreativeTabs {
         super(name);
     }
 
+    @Override
+    public ItemStack createIcon() {
+        return tabIconItem;
+    }
+
     /**
      * Returns the item stack used as creative tab icon.
      * @return tab icon item stack

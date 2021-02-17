@@ -27,7 +27,7 @@ public class BlockBase extends Block implements IHasModel {
      */
     public BlockBase(String name, Material material, CreativeTabs tabs) {
         super(material);
-        this.setUnlocalizedName(name);
+        this.setTranslationKey(name);
         this.setRegistryName(name);
 
         this.setCreativeTab(tabs != null ? tabs : CreativeTabs.MISC);

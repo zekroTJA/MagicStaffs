@@ -57,7 +57,7 @@ public class FireStaff extends GenericStaff {
         if (world.isRemote) {
 
             for (int i = 0; i < particleAmount; ++i) {
-                final Vec3d randPos = playerPos.addVector(
+                final Vec3d randPos = playerPos.add(
                         (rand.nextDouble() - 0.5) / 2 + aim.x,
                         (rand.nextDouble() - 0.5) / 2 - 0.5 + aim.y,
                         (rand.nextDouble() - 0.5) / 2 + aim.z);

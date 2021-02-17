@@ -34,7 +34,7 @@ public class ConfigHandler {
 
         ItemUtils.getRegisteredStaffs()
                 .forEach(staff -> staffPropertyFiles.add(
-                        new Tuple<>(staff, new File(staffsConfigLocation.getPath(), staff.getRegistryName().getResourcePath() + ".cfg"))));
+                        new Tuple<>(staff, new File(staffsConfigLocation.getPath(), staff.getRegistryName().getPath() + ".cfg"))));
 
         mainConfigFile = new File(mainConfigLocation.getPath(), MagicStaffs.MOD_ID + ".cfg");
         staffPropertyConfigs = staffPropertyFiles;
@@ -64,7 +64,7 @@ public class ConfigHandler {
         mainConfig.addCustomCategoryComment(categoryRarity, "Define how rarely items should spawn in dungeon chests.");
 
         ItemUtils.getRegisteredEssences().forEach(essence -> {
-            final String resourceName = ((Item) essence).getRegistryName().getResourcePath();
+            final String resourceName = ((Item) essence).getRegistryName().getPath();
             essence.setRarity(mainConfig.getInt(
                     resourceName,
                     categoryRarity,
@@ -101,7 +101,7 @@ public class ConfigHandler {
         final String cat = "properties";
         Configuration cfg = new Configuration(file);
 
-        cfg.addCustomCategoryComment(cat, staff.getUnlocalizedName() + " staff properties.");
+        cfg.addCustomCategoryComment(cat, staff.getRegistryName() + " staff properties.");
 
         staff.getConfigEntries().forEach(entry -> {
             if (entry.getDef() instanceof Integer) {

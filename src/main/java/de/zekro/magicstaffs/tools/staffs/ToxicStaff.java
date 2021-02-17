@@ -57,7 +57,7 @@ public class ToxicStaff extends GenericStaff {
             .forEach(entity -> {
                 if (world.isRemote) {
                     for (int i = 0; i < particleAmount; ++i) {
-                        Vec3d randPos = entity.getPositionVector().addVector(
+                        Vec3d randPos = entity.getPositionVector().add(
                                 (rand.nextDouble() - 0.5) * 2,
                                 (rand.nextDouble() - 0.5 + 1) * 2,
                                 (rand.nextDouble() - 0.5) * 2);
