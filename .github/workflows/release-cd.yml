@@ -30,10 +30,13 @@ jobs:
     - name: Build with Gradle
       run: ./gradlew jar
 
+    - name: Inject Version into Changelog
+      run: sed -i "1s/.*/$(git describe --tags --abbrev=0)/" ./CHANGELOG.md
+
     - name: Deploy to Releases
       env:
         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
       run: 'hub release create 
               -a build/libs/*.jar
-              -m "$(git describe --tags --abbrev=0)"
+              -F ./CHANGELOG.md
               $(git describe --tags --abbrev=0)'
