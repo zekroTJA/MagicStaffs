@@ -35,7 +35,7 @@ public class LootTableHandler {
                         0,
                         new LootFunction[0],
                         new LootCondition[0],
-                        MagicStaffs.MOD_ID + ((Item) essence).getRegistryName().getResourcePath()
+                        MagicStaffs.MOD_ID + ((Item) essence).getRegistryName().getPath()
                 ))
             );
         }

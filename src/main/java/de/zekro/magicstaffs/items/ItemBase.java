@@ -36,8 +36,8 @@ public class ItemBase extends Item implements IHasModel {
      * @param tabs
      */
     private void registerItem(String name, CreativeTabs tabs) {
-        setUnlocalizedName(name);
-        setRegistryName(name);
+        setRegistryName(MagicStaffs.MOD_ID, name);
+        setTranslationKey(name);
 
         setCreativeTab(tabs != null ? tabs : CreativeTabs.MISC);
 

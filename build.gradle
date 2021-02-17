@@ -1,175 +1,114 @@
 buildscript {
     repositories {
+        maven { url = 'https://files.minecraftforge.net/maven' }
         jcenter()
-        maven {
-            url = 'http://files.minecraftforge.net/maven'
-        }
-        maven {
-            url 'https://plugins.gradle.org/m2/'
-        }
+        mavenCentral()
     }
     dependencies {
-        classpath 'net.minecraftforge.gradle:ForgeGradle:2.3-SNAPSHOT'
-        classpath 'gradle.plugin.com.matthewprenger:CurseGradle:1.1.0'
+        classpath 'net.minecraftforge.gradle:ForgeGradle:3+'
     }
 }
 
-apply plugin: 'net.minecraftforge.gradle.forge'
-apply plugin: 'com.matthewprenger.cursegradle'
-apply plugin: 'maven-publish'
+apply plugin: 'net.minecraftforge.gradle'
 
-apply from: 'https://raw.githubusercontent.com/MinecraftModDevelopment/Gradle-Collection/master/generic/secrets.gradle'
-apply from: 'https://raw.githubusercontent.com/MinecraftModDevelopment/Gradle-Collection/master/generic/patreon.gradle'
-apply from: 'https://raw.githubusercontent.com/MinecraftModDevelopment/Gradle-Collection/master/generic/markdown-git-changelog.gradle'
-apply from: 'https://raw.githubusercontent.com/MinecraftModDevelopment/Gradle-Collection/master/minecraft/artifacts.gradle'
-apply from: 'https://raw.githubusercontent.com/MinecraftModDevelopment/Gradle-Collection/master/minecraft/maven.gradle'
+group = 'magicsstaffs'
+version = '1.0-SNAPSHOT'
+archivesBaseName = 'magicsstaffs'
 
-loadSecrets()
-
-group = "${mod_group}" // http://maven.apache.org/guides/mini/guide-naming-conventions.html
-archivesBaseName = "${mod_id}"
-
-version = "${mod_version}"
-group = "${mod_group}"
-archivesBaseName = "${mod_name}-${version_minecraft}"
-
-sourceCompatibility = targetCompatibility = '1.8' // Need this here so eclipse task generates correctly.
-compileJava {
-    sourceCompatibility = targetCompatibility = '1.8'
-}
+sourceCompatibility = targetCompatibility = compileJava.sourceCompatibility = compileJava.targetCompatibility = '1.8'
 
 minecraft {
-    version = "1.12.2-14.23.5.2768"
-    runDir = "run"
-    
-    // the mappings can be changed at any time, and must be in the following format.
-    // snapshot_YYYYMMDD   snapshot are built nightly.
-    // stable_#            stables are built at the discretion of the MCP team.
+    // The mappings can be changed at any time, and must be in the following format.
+    // snapshot_YYYYMMDD   Snapshot are built nightly.
+    // stable_#            Stables are built at the discretion of the MCP team.
     // Use non-default mappings at your own risk. they may not always work.
-    // simply re-run your setup task after changing the mappings to update your workspace.
-    mappings = "snapshot_20171003"
+    // Simply re-run your setup task after changing the mappings to update your workspace.
+    mappings channel: 'stable', version: '39-1.12'
     // makeObfSourceJar = false // an Srg named sources jar is made by default. uncomment this to disable.
-}
 
-repositories {
+    // accessTransformer = file('src/main/resources/META-INF/accesstransformer.cfg')
 
-    maven {
+    // Default run configurations.
+    // These can be tweaked, removed, or duplicated as needed.
+    runs {
+        client {
+            workingDirectory project.file('run')
 
-        url 'https://maven.mcmoddev.com'
-    }
+            // Recommended logging data for a userdev environment
+            property 'forge.logging.markers', 'SCAN,REGISTRIES,REGISTRYDUMP'
 
-    maven {
+            // Recommended logging level for the console
+            property 'forge.logging.console.level', 'debug'
 
-        url 'http://dvs1.progwml6.com/files/maven'
-    }
+//            mods {
+//                magicsstaffs {
+//                    source sourceSets.main
+//                }
+//            }
+        }
 
-    maven {
+        server {
+            workingDirectory project.file('run')
 
-        url 'http://maven.blamejared.com'
+            // Recommended logging data for a userdev environment
+            property 'forge.logging.markers', 'SCAN,REGISTRIES,REGISTRYDUMP'
+
+            // Recommended logging level for the console
+            property 'forge.logging.console.level', 'debug'
+
+//            mods {
+//                magicsstaffs {
+//                    source sourceSets.main
+//                }
+//            }
+        }
     }
 }
 
 dependencies {
-//    deobfCompile "net.darkhax.bookshelf:Bookshelf-1.12.2:${version_bookshelf}"
+    // Specify the version of Minecraft to use, If this is any group other then 'net.minecraft' it is assumed
+    // that the dep is a ForgeGradle 'patcher' dependency. And it's patches will be applied.
+    // The userdev artifact is a special name and will get all sorts of transformations applied to it.
+    minecraft 'net.minecraftforge:forge:1.12.2-14.23.5.2854'
+
+    // You may put jars on which you depend on in ./libs or you may define them like so..
+    // compile "some.group:artifact:version:classifier"
+    // compile "some.group:artifact:version"
+
+    // Real examples
+    // compile 'com.mod-buildcraft:buildcraft:6.0.8:dev'  // adds buildcraft to the dev env
+    // compile 'com.googlecode.efficient-java-matrix-library:ejml:0.24' // adds ejml to the dev env
+
+    // The 'provided' configuration is for optional dependencies that exist at compile-time but might not at runtime.
+    // provided 'com.mod-buildcraft:buildcraft:6.0.8:dev'
+
+    // These dependencies get remapped to your current MCP mappings
+    // deobf 'com.mod-buildcraft:buildcraft:6.0.8:dev'
+
+    // For more info...
+    // http://www.gradle.org/docs/current/userguide/artifact_dependencies_tutorial.html
+    // http://www.gradle.org/docs/current/userguide/dependency_management.html
 }
 
 processResources {
     // this will ensure that this task is redone when the versions change.
     inputs.property "version", project.version
-    inputs.property "mcversion", project.minecraft.version
+//    inputs.property "mcversion", project.minecraft.version
 
     // replace stuff in mcmod.info, nothing else
     from(sourceSets.main.resources.srcDirs) {
         include 'mcmod.info'
-                
+
         // replace version and mcversion
-        expand 'version':project.version, 'mcversion':project.minecraft.version
+        // expand 'version':project.version , 'mcversion':project.minecraft.version
     }
-        
+
     // copy everything else except the mcmod.info
     from(sourceSets.main.resources.srcDirs) {
         exclude 'mcmod.info'
     }
 }
 
-String getBuildNumber() {
-    return System.getenv('BUILD_NUMBER') ? System.getenv('BUILD_NUMBER') : System.getenv('TRAVIS_BUILD_NUMBER') ? System.getenv('TRAVIS_BUILD_NUMBER') : '0';
-}
+jar.finalizedBy('reobfJar')
 
-//Shuts up javadoc failures
-if (JavaVersion.current().isJava8Compatible()) {
-
-    allprojects {
-
-        tasks.withType(Javadoc) {
-
-            options.addStringOption('Xdoclint:none', '-quiet')
-        }
-    }
-}
-
-curseforge {
-
-    apiKey = findProperty('curse_auth') ?: 0
-    def versions = "${curse_versions}".split(', ')
-
-    project {
-
-        id = "${curse_project}"
-        releaseType = 'alpha'
-
-        changelog = getGitChangelog() + "\n\nHuge thanks to my supporters on [Patreon](https://www.patreon.com/Darkhax?MCChangelog?${mod_class})\n\n" + getPledgeLog()
-        changelogType = 'markdown'
-
-        versions.each {
-
-            addGameVersion "${it}"
-        }
-
-        if (project.hasProperty('curse_requirements') || project.hasProperty('curse_optionals')) {
-
-            mainArtifact(jar) {
-
-                relations {
-
-                    if (project.hasProperty('curse_requirements')) {
-                        def requirements = "${curse_requirements}".split(', ')
-                        requirements.each {
-
-                            requiredLibrary "${it}"
-                        }
-                    }
-
-                    if (project.hasProperty('curse_optionals')) {
-                        def optionals = "${curse_optionals}".split(', ')
-                        optionals.each {
-
-                            optionalLibrary "${it}"
-                        }
-                    }
-                }
-            }
-        }
-
-        addArtifact(sourcesJar)
-        addArtifact(javadocJar)
-        addArtifact(deobfJar)
-    }
-}
-
-task signJar(type: SignJar, dependsOn: reobfJar) {
-
-    onlyIf {
-
-        project.hasProperty('keyStore')
-    }
-
-    keyStore = project.findProperty('keyStore')
-    alias = project.findProperty('keyStoreAlias')
-    storePass = project.findProperty('keyStorePass')
-    keyPass = project.findProperty('keyStoreKeyPass')
-    inputFile = jar.archivePath
-    outputFile = jar.archivePath
-}
-
-build.dependsOn signJar
+sourceSets { main { output.resourcesDir = output.classesDir } }

@@ -140,15 +140,15 @@ public class BlockInfuser extends BlockBase implements ITileEntityProvider {
         return new BlockStateContainer(this, BlockHorizontal.FACING);
     }
 
-    @Override
-    public IBlockState getStateFromMeta(int meta) {
-        EnumFacing facing = EnumFacing.getFront(meta);
-
-        if (facing.getAxis() == EnumFacing.Axis.Y)
-            facing = EnumFacing.NORTH;
-
-        return this.getDefaultState().withProperty(BlockHorizontal.FACING, facing);
-    }
+//    @Override
+//    public IBlockState getStateFromMeta(int meta) {
+//        EnumFacing facing = EnumFacing.getFront(meta);
+//
+//        if (facing.getAxis() == EnumFacing.Axis.Y)
+//            facing = EnumFacing.NORTH;
+//
+//        return this.getDefaultState().withProperty(BlockHorizontal.FACING, facing);
+//    }
 
     @Override
     public int getMetaFromState(IBlockState state)
