@@ -11,9 +11,9 @@ buildscript {
 
 apply plugin: 'net.minecraftforge.gradle'
 
-group = 'magicsstaffs'
-version = '1.0-SNAPSHOT'
-archivesBaseName = 'magicsstaffs'
+version = "${mod_version}"
+group = "${mod_group}"
+archivesBaseName = "${mod_name}-${version_minecraft}"
 
 sourceCompatibility = targetCompatibility = compileJava.sourceCompatibility = compileJava.targetCompatibility = '1.8'
 

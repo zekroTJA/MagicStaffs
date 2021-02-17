@@ -30,8 +30,10 @@ jobs:
     - name: Build with Gradle
       run: ./gradlew jar
 
-    - name: Inject Version into Changelog
-      run: sed -i "1s/.*/$(git describe --tags --abbrev=0)/" ./CHANGELOG.md
+    - name: Inject Version
+      run: |
+        sed -i "1s/.*/$(git describe --tags --abbrev=0)/" ./CHANGELOG.md
+        sed -i -E "s/(mod_version=)debug/\1$(git describe --tags --abbrev=0)/" gradle.properties
 
     - name: Deploy to Releases
       env:
