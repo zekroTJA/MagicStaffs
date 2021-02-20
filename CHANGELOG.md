@@ -1,3 +1,4 @@
 [version will be automatically inserted here by CD]
 
-- Update to Forge 14.23.5.2854
+- The Infuser now has proper break particles. 
+- Version is now properly displayed in the mod list.

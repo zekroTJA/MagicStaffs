@@ -1,5 +1,6 @@
 {
     "textures": {
+        "particle": "magicstaffs:blocks/infuser_bottom",
         "infuser_top": "magicstaffs:blocks/infuser_top",
         "infuser_side": "magicstaffs:blocks/infuser_side",
         "infuser_bottom": "magicstaffs:blocks/infuser_bottom"
