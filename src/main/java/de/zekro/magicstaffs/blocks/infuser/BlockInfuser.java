@@ -36,6 +36,7 @@ public class BlockInfuser extends BlockBase implements ITileEntityProvider {
     public BlockInfuser(String name, CreativeTabs tabs) {
         super(name, Material.ROCK, tabs);
         setHardness(5);
+        setLightOpacity(0);
         setDefaultState(getBlockState().getBaseState()
                 .withProperty(BlockHorizontal.FACING, EnumFacing.NORTH));
     }
@@ -139,16 +140,6 @@ public class BlockInfuser extends BlockBase implements ITileEntityProvider {
     protected BlockStateContainer createBlockState() {
         return new BlockStateContainer(this, BlockHorizontal.FACING);
     }
-
-//    @Override
-//    public IBlockState getStateFromMeta(int meta) {
-//        EnumFacing facing = EnumFacing.getFront(meta);
-//
-//        if (facing.getAxis() == EnumFacing.Axis.Y)
-//            facing = EnumFacing.NORTH;
-//
-//        return this.getDefaultState().withProperty(BlockHorizontal.FACING, facing);
-//    }
 
     @Override
     public int getMetaFromState(IBlockState state)
