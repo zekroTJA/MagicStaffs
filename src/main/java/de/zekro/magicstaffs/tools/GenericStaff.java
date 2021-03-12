@@ -50,6 +50,11 @@ public abstract class GenericStaff extends ItemBase {
         configEntries.addAll(getInitializedConfigEntries());
     }
 
+    @Override
+    public int getItemEnchantability() {
+        return ToolMaterial.DIAMOND.getEnchantability();
+    }
+
     /**
      * Returns the essence the Staff is made of.
      * @return Essence item instance
@@ -142,7 +147,7 @@ public abstract class GenericStaff extends ItemBase {
                 if (getMaxDamage(itemStack) <= itemStack.getItemDamage())
                     return new ActionResult<>(EnumActionResult.SUCCESS, ItemStack.EMPTY);
 
-                setDamage(itemStack, itemStack.getItemDamage() + 1);
+                itemStack.damageItem(1, player);
             }
         }
 
