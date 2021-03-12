@@ -1,4 +1,5 @@
 [version will be automatically inserted here by CD]
 
-- The Infuser now has proper break particles. 
-- Version is now properly displayed in the mod list.
+- Staffs can now properly be enchanted in Enchantment Tables.
+- Staffs now respect the Unbreaking enchantment when taking damage on use.
+- The electric staff now properly prevents fall damage after use.
