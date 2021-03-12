@@ -12,6 +12,8 @@ import net.minecraft.util.EnumHand;
 import net.minecraft.util.SoundEvent;
 import net.minecraft.util.math.Vec3d;
 import net.minecraft.world.World;
+import net.minecraftforge.fml.client.FMLClientHandler;
+import net.minecraftforge.fml.server.FMLServerHandler;
 
 import javax.annotation.Nullable;
 import java.util.Collections;
@@ -43,7 +45,7 @@ public class ElectricStaff extends GenericStaff {
             player.addVelocity(aim.x, aim.y, aim.z);
         }
         else {
-            player.fallDistance = 0F;
+            player.fallDistance = -1000F;
         }
     }
 
