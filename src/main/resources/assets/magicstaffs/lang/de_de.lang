@@ -1,0 +1,22 @@
+# Creative Tabs
+itemGroup.magic_staffs=Magic Staffs
+
+# Staffs
+item.base_staff.name=Stab
+item.electric_staff.name=Elektrischer Stab
+item.fire_staff.name=Feuerstab
+item.life_staff.name=Lebensstab
+item.toxic_staff.name=Giftiger Stab
+
+# Essences
+item.magic_essence.name=Magische Essenz
+item.electric_essence.name=Elektrische Essenz
+item.fire_essence.name=Feueressenz
+item.life_essence.name=Lebensessenz
+item.toxic_essence.name=Giftige Essenz
+
+# Blocks
+tile.infuser.name=Infusionstisch
+
+# Containers
+container.infuser=Infusionstisch
