@@ -37,5 +37,13 @@
       { "name": "magicstaffs:staffs/toxic/activate2", "stream": true },
       { "name": "magicstaffs:staffs/toxic/activate3", "stream": true }
     ]
+  },
+
+  "infuser.infusion": {
+    "category": "block",
+    "subtitle": "infuser.infusion",
+    "sounds": [
+      { "name": "magicstaffs:infuser/infusion", "stream": true }
+    ]
   }
 }

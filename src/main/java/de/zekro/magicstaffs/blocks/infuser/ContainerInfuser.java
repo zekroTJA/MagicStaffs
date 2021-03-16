@@ -4,13 +4,18 @@ import de.zekro.magicstaffs.blocks.infuser.slots.SlotInfuserEssenceInput;
 import de.zekro.magicstaffs.blocks.infuser.slots.SlotInfuserOutput;
 import de.zekro.magicstaffs.blocks.infuser.slots.SlotInfuserStaffInput;
 import de.zekro.magicstaffs.crafting.infuser.InfuserCraftingManager;
+import de.zekro.magicstaffs.handlers.SoundHandler;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.entity.player.EntityPlayerMP;
 import net.minecraft.entity.player.InventoryPlayer;
+import net.minecraft.init.Items;
 import net.minecraft.inventory.*;
+import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.item.crafting.IRecipe;
 import net.minecraft.network.play.server.SPacketSetSlot;
+import net.minecraft.network.play.server.SPacketSoundEffect;
+import net.minecraft.util.SoundCategory;
 import net.minecraft.world.World;
 
 /**
@@ -25,6 +30,8 @@ public class ContainerInfuser extends Container {
     private final EntityPlayer player;
 
     private final InventoryCrafting craftMatrix = new InventoryCrafting(this, 3, 1);
+
+    private boolean lastWasCraftResult = false;
 
     /**
      * Create new instance of the container.
@@ -54,6 +61,16 @@ public class ContainerInfuser extends Container {
     }
 
     @Override
+    public ItemStack slotClick(int slotId, int dragType, ClickType clickType, EntityPlayer player) {
+        if (!world.isRemote && slotId == 0 && inventorySlots.get(0).getStack().getItem() != Items.AIR) {
+            ((EntityPlayerMP) player).connection.sendPacket(new SPacketSoundEffect(
+                    SoundHandler.INFUSER_INFUSION, SoundCategory.BLOCKS,
+                    player.posX, player.posY, player.posZ, 0.6f, 1f));
+        }
+        return super.slotClick(slotId, dragType, clickType, player);
+    }
+
+    @Override
     public void onCraftMatrixChanged(IInventory inventoryIn) {
         this.slotChangedCraftingGrid(world, player, craftMatrix, result);
     }
@@ -68,6 +85,7 @@ public class ContainerInfuser extends Container {
             if (recipe != null) {
                 result.setRecipeUsed(recipe);
                 itemStack = recipe.getCraftingResult(matrix);
+                lastWasCraftResult = true;
             }
 
             result.setInventorySlotContents(0, itemStack);
