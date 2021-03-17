@@ -25,9 +25,9 @@ public class LootTableHandler {
      */
     @SubscribeEvent
     public static void onLootTableLoad(LootTableLoadEvent event) {
-
+        final String path = event.getName().getPath();
         final LootPool pool = event.getTable().getPool("pool2");
-        if (pool != null) {
+        if (pool != null && (path.startsWith("chest") || path.startsWith("entities/witch"))) {
             ItemUtils.getRegisteredEssences().forEach(essence ->
                 pool.addEntry(new LootEntryItem(
                         (Item) essence,
