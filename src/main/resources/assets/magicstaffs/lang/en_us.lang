@@ -22,8 +22,8 @@ tile.infuser.name=Infusion Table
 container.infuser=Infusion Table
 
 # Sounds
-sound.staffs.electric.activate=Electric Staff activate
-sound.staffs.fire.activate=Fire Staff activate
-sound.staffs.life.activate=Life Staff activate
-sound.staffs.toxic.activate=Toxic Staff activate
-sound.infuser.infusion=Infuser infusion
+sound.staffs.electric.activate=Electric Staff activated
+sound.staffs.fire.activate=Fire Staff activated
+sound.staffs.heal.activate=Life Staff activated
+sound.staffs.toxic.activate=Toxic Staff activated
+sound.infuser.infusion=Infuser infused

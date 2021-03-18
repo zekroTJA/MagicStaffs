@@ -24,6 +24,6 @@ container.infuser=Infusionstisch
 # Sounds
 sound.staffs.electric.activate=Elektrischer Stab aktiviert
 sound.staffs.fire.activate=Feuerstab aktiviert
-sound.staffs.life.activate=Lebensstab aktiviert
+sound.staffs.heal.activate=Lebensstab aktiviert
 sound.staffs.toxic.activate=Giftiger Stab aktiviert
 sound.infuser.infusion=Infusionstisch Infusion

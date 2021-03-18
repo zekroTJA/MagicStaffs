@@ -119,7 +119,7 @@ public abstract class GenericStaff extends ItemBase {
         ItemStack itemStack = player.getHeldItem(hand);
 
         if (world.isRemote) {
-            if (!coolDownServer.take(world))
+            if (!coolDownServer.take(world, player))
                 return super.onItemRightClick(world, player, hand);
 
             final SoundEvent sound = getSound();
@@ -129,26 +129,16 @@ public abstract class GenericStaff extends ItemBase {
                         sound, SoundCategory.PLAYERS,
                         0.6f, 1f);
             }
-
-            if (getMaxDamage(itemStack) <= itemStack.getItemDamage())
-                world.playSound(
-                        player, player.posX, player.posY, player.posZ,
-                        SoundEvents.ENTITY_ITEM_BREAK, SoundCategory.PLAYERS,
-                        1F, 1F);
         }
 
         clickAction(world, player, hand);
 
         if (!world.isRemote) {
-            if (!coolDownClient.take(world))
+            if (!coolDownClient.take(world, player))
                 return super.onItemRightClick(world, player, hand);
 
-            if (!player.isCreative()) {
-                if (getMaxDamage(itemStack) <= itemStack.getItemDamage())
-                    return new ActionResult<>(EnumActionResult.SUCCESS, ItemStack.EMPTY);
-
+            if (!player.isCreative())
                 itemStack.damageItem(1, player);
-            }
         }
 
         return super.onItemRightClick(world, player, hand);
