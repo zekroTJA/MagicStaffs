@@ -7,14 +7,12 @@ import net.minecraft.client.renderer.tileentity.TileEntitySpecialRenderer;
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.math.MathHelper;
 
-public class TileEntityInfuserRenderer extends TileEntitySpecialRenderer<TileEntityInfuser>
-{
+public class TileEntityInfuserRenderer extends TileEntitySpecialRenderer<TileEntityInfuser> {
     public static final ResourceLocation BASESTAFF = new ResourceLocation(MagicStaffs.MOD_ID, "textures/blocks/infuser_staff.png");
 
     public final ModelStaff baseStaff = new ModelStaff();
 
-    public void render(TileEntityInfuser te, double x, double y, double z, float partialTicks, int destroyStage, float alpha)
-    {
+    public void render(TileEntityInfuser te, double x, double y, double z, float partialTicks, int destroyStage, float alpha) {
         GlStateManager.pushMatrix();
 
         float f0 = te.tickCount + partialTicks;

@@ -5,12 +5,10 @@ import net.minecraft.client.model.ModelBox;
 import net.minecraft.client.model.ModelRenderer;
 import net.minecraft.entity.Entity;
 
-public class ModelStaff extends ModelBase
-{
+public class ModelStaff extends ModelBase {
     public ModelRenderer baseStaff;
 
-    public ModelStaff()
-    {
+    public ModelStaff() {
         textureWidth = 16;
         textureHeight = 16;
 
@@ -23,16 +21,14 @@ public class ModelStaff extends ModelBase
         baseStaff.cubeList.add(new ModelBox(baseStaff, 0, 0, -0.5F, -5.0F, -0.5F, 1, 10, 1, 0.0F, false));
     }
 
-    public void setRotationAngle(ModelRenderer modelRenderer, float x, float y, float z)
-    {
+    public void setRotationAngle(ModelRenderer modelRenderer, float x, float y, float z) {
         modelRenderer.rotateAngleX = x;
         modelRenderer.rotateAngleY = y;
         modelRenderer.rotateAngleZ = z;
     }
 
     @Override
-    public void render(Entity entity, float f0, float f1, float f2, float f3, float f4, float f5)
-    {
+    public void render(Entity entity, float f0, float f1, float f2, float f3, float f4, float f5) {
         baseStaff.render(f5);
     }
 }

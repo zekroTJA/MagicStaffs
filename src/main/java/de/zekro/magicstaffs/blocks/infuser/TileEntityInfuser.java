@@ -16,8 +16,7 @@ import net.minecraftforge.items.ItemStackHandler;
 /**
  * Tile entity for the Infusion Table.
  */
-public class TileEntityInfuser extends TileEntity implements ITickable
-{
+public class TileEntityInfuser extends TileEntity implements ITickable {
     private final ItemStackHandler handler = new ItemStackHandler(3);
 
     private String customName;
@@ -90,8 +89,7 @@ public class TileEntityInfuser extends TileEntity implements ITickable
         return compound;
     }
 
-    public void update()
-    {
+    public void update() {
         ++this.tickCount;
 
         while(this.bookRotation >= (float)Math.PI)
