@@ -92,37 +92,31 @@ public class TileEntityInfuser extends TileEntity implements ITickable {
     public void update() {
         ++this.tickCount;
 
-        while(this.bookRotation >= (float)Math.PI)
-        {
+        while(this.bookRotation >= (float)Math.PI) {
             this.bookRotation -= ((float)Math.PI * 2F);
         }
 
-        while(this.bookRotation < -(float)Math.PI)
-        {
+        while(this.bookRotation < -(float)Math.PI) {
             this.bookRotation += ((float)Math.PI * 2F);
         }
 
         this.tRot += 0.02F;
 
-        while(this.tRot >= (float)Math.PI)
-        {
+        while(this.tRot >= (float)Math.PI) {
             this.tRot -= ((float)Math.PI * 2F);
         }
 
-        while(this.tRot < -(float)Math.PI)
-        {
+        while(this.tRot < -(float)Math.PI) {
             this.tRot += ((float)Math.PI * 2F);
         }
 
         float f2 = this.tRot - this.bookRotation;
 
-        while(f2 >= (float)Math.PI)
-        {
+        while(f2 >= (float)Math.PI) {
             f2 -= ((float)Math.PI * 2F);
         }
 
-        while(f2 < -(float)Math.PI)
-        {
+        while(f2 < -(float)Math.PI) {
             f2 += ((float)Math.PI * 2F);
         }
 
