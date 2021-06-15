@@ -1,6 +1,10 @@
 package de.zekro.magicstaffs.shared;
 
+import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.world.World;
+
+import java.util.HashMap;
+import java.util.UUID;
 
 /**
  * General simple cool down manager.
@@ -11,7 +15,7 @@ import net.minecraft.world.World;
 public class CoolDown {
 
     private long coolDown;
-    private long lastActivation;
+    private HashMap<UUID, Long> activations;
 
     /**
      * Create new instance of CoolDown with the
@@ -21,6 +25,7 @@ public class CoolDown {
      */
     public CoolDown(long cd) {
         coolDown = cd;
+        activations = new HashMap<>();
     }
 
     /**
@@ -38,14 +43,16 @@ public class CoolDown {
      * @param world world in
      * @return cool down status
      */
-    public boolean take(World world) {
-        if (coolDown == 0)
+    public boolean take(World world, EntityPlayer player) {
+        final UUID uid = player.getUniqueID();
+
+        if (coolDown <= 0)
             return true;
 
-        if (onCoolDown(world))
+        if (onCoolDown(world, uid))
             return false;
 
-        lastActivation = world.getTotalWorldTime();
+        activations.put(uid, world.getTotalWorldTime());
         return true;
     }
 
@@ -55,7 +62,9 @@ public class CoolDown {
      * @param world world in
      * @return cool down state
      */
-    public boolean onCoolDown(World world) {
-        return lastActivation + coolDown >= world.getTotalWorldTime();
+    public boolean onCoolDown(World world, UUID uid) {
+        Long acts = activations.get(uid);
+        if (acts == null) acts = 0L;
+        return acts + coolDown >= world.getTotalWorldTime();
     }
 }

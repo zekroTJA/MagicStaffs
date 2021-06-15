@@ -42,3 +42,15 @@ jobs:
               -a build/libs/*.jar
               -F ./CHANGELOG.md
               $(git describe --tags --abbrev=0)'
+
+    - name: Deploy to Curseforge
+      uses: itsmeow/curseforge-upload@master
+      with:
+        token: ${{ secrets.CURSEFORGE_APIKEY }}
+        project_id: 340295
+        game_endpoint: minecraft
+        file_path: build/libs/*.jar
+        changelog: $(cat CHANGELOG.md | tail -n +3)
+        display_name: $(git describe --tags --abbrev=0)
+        game_versions: minecraft-1-12:1.12.2,4458,2:Java 7,Minecraft 1.12:1-12,1.12.1,Forge
+        release_type: release

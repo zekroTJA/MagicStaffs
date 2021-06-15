@@ -11,12 +11,14 @@ public class SoundHandler {
     public static SoundEvent FIRE_STAFF_ACTIVATE;
     public static SoundEvent HEAL_STAFF_ACTIVATE;
     public static SoundEvent TOXIC_STAFF_ACTIVATE;
+    public static SoundEvent INFUSER_INFUSION;
 
     public static void registerSounds() {
         ELECTRIC_STAFF_ACTIVATE = registerSound("staffs.electric.activate");
         FIRE_STAFF_ACTIVATE = registerSound("staffs.fire.activate");
         HEAL_STAFF_ACTIVATE = registerSound("staffs.heal.activate");
         TOXIC_STAFF_ACTIVATE = registerSound("staffs.toxic.activate");
+        INFUSER_INFUSION = registerSound("infuser.infusion");
     }
 
     private static SoundEvent registerSound(String name) {

@@ -1,7 +1,7 @@
 {
   "staffs.electric.activate": {
     "category": "item",
-    "subtitle": "staffs.electric.activate",
+    "subtitle": "sound.staffs.electric.activate",
     "sounds": [
       { "name": "magicstaffs:staffs/electric/activate1", "stream": true },
       { "name": "magicstaffs:staffs/electric/activate2", "stream": true },
@@ -11,7 +11,7 @@
 
   "staffs.fire.activate": {
     "category": "item",
-    "subtitle": "staffs.electric.activate",
+    "subtitle": "sound.staffs.fire.activate",
     "sounds": [
       { "name": "magicstaffs:staffs/fire/activate1", "stream": true },
       { "name": "magicstaffs:staffs/fire/activate2", "stream": true },
@@ -21,7 +21,7 @@
 
   "staffs.heal.activate": {
     "category": "item",
-    "subtitle": "staffs.heal.activate",
+    "subtitle": "sound.staffs.heal.activate",
     "sounds": [
       { "name": "magicstaffs:staffs/heal/activate1", "stream": true },
       { "name": "magicstaffs:staffs/heal/activate2", "stream": true },
@@ -31,11 +31,19 @@
 
   "staffs.toxic.activate": {
     "category": "item",
-    "subtitle": "staffs.toxic.activate",
+    "subtitle": "sound.staffs.toxic.activate",
     "sounds": [
       { "name": "magicstaffs:staffs/toxic/activate1", "stream": true },
       { "name": "magicstaffs:staffs/toxic/activate2", "stream": true },
       { "name": "magicstaffs:staffs/toxic/activate3", "stream": true }
+    ]
+  },
+
+  "infuser.infusion": {
+    "category": "block",
+    "subtitle": "sound.infuser.infusion",
+    "sounds": [
+      { "name": "magicstaffs:infuser/infusion", "stream": true }
     ]
   }
 }

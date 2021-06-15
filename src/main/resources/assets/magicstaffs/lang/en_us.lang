@@ -20,3 +20,10 @@ tile.infuser.name=Infusion Table
 
 # Containers
 container.infuser=Infusion Table
+
+# Sounds
+sound.staffs.electric.activate=Electric Staff activated
+sound.staffs.fire.activate=Fire Staff activated
+sound.staffs.heal.activate=Life Staff activated
+sound.staffs.toxic.activate=Toxic Staff activated
+sound.infuser.infusion=Infuser infused
