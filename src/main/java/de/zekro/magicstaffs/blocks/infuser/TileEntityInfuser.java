@@ -4,9 +4,11 @@ import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.EnumFacing;
+import net.minecraft.util.ITickable;
 import net.minecraft.util.text.ITextComponent;
 import net.minecraft.util.text.TextComponentString;
 import net.minecraft.util.text.TextComponentTranslation;
+
 import net.minecraftforge.common.capabilities.Capability;
 import net.minecraftforge.items.CapabilityItemHandler;
 import net.minecraftforge.items.ItemStackHandler;
@@ -14,11 +16,15 @@ import net.minecraftforge.items.ItemStackHandler;
 /**
  * Tile entity for the Infusion Table.
  */
-public class TileEntityInfuser extends TileEntity {
-
+public class TileEntityInfuser extends TileEntity implements ITickable {
     private final ItemStackHandler handler = new ItemStackHandler(3);
 
     private String customName;
+
+    public int tickCount;
+
+    public float tRot;
+    public float bookRotation;
 
     /**
      * Returns if the tile entity has a custom name.
@@ -81,5 +87,39 @@ public class TileEntityInfuser extends TileEntity {
             compound.setString("CustomName", this.customName);
 
         return compound;
+    }
+
+    public void update() {
+        ++this.tickCount;
+
+        while(this.bookRotation >= (float)Math.PI) {
+            this.bookRotation -= ((float)Math.PI * 2F);
+        }
+
+        while(this.bookRotation < -(float)Math.PI) {
+            this.bookRotation += ((float)Math.PI * 2F);
+        }
+
+        this.tRot += 0.02F;
+
+        while(this.tRot >= (float)Math.PI) {
+            this.tRot -= ((float)Math.PI * 2F);
+        }
+
+        while(this.tRot < -(float)Math.PI) {
+            this.tRot += ((float)Math.PI * 2F);
+        }
+
+        float f2 = this.tRot - this.bookRotation;
+
+        while(f2 >= (float)Math.PI) {
+            f2 -= ((float)Math.PI * 2F);
+        }
+
+        while(f2 < -(float)Math.PI) {
+            f2 += ((float)Math.PI * 2F);
+        }
+
+        this.bookRotation += f2 * 0.4F;
     }
 }
