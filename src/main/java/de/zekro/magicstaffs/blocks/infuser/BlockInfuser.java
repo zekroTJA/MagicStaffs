@@ -4,6 +4,7 @@ import de.zekro.magicstaffs.MagicStaffs;
 import de.zekro.magicstaffs.blocks.BlockBase;
 import net.minecraft.block.BlockHorizontal;
 import net.minecraft.block.ITileEntityProvider;
+import net.minecraft.block.material.MapColor;
 import net.minecraft.block.material.Material;
 import net.minecraft.block.state.BlockStateContainer;
 import net.minecraft.block.state.IBlockState;
@@ -149,8 +150,13 @@ public class BlockInfuser extends BlockBase implements ITileEntityProvider {
     }
 
     @Override
-    public int getMetaFromState(IBlockState state)
-    {
+    public int getMetaFromState(IBlockState state) {
         return state.getValue(BlockHorizontal.FACING).getIndex();
+    }
+
+    @Override
+    @SuppressWarnings("deprecation")
+    public MapColor getMapColor(IBlockState state, IBlockAccess worldIn, BlockPos pos) {
+        return MapColor.CYAN;
     }
 }
