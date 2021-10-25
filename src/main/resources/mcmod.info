@@ -8,7 +8,7 @@
   "updateUrl": "https://github.com/zekroTJA/MagicStaffs/releases",
   "authorList": ["zekro", "luxtracon"],
   "credits": "Development by zekro (zekro.de). Sounds and textures by luxtracon (@luxtracon). © 2021 zekro Development (Ringo Hoffmann)",
-  "logoFile": "",
+  "logoFile": "assets/magicstaffs/logo/logo.png",
   "screenshots": [],
   "dependencies": []
 }]
