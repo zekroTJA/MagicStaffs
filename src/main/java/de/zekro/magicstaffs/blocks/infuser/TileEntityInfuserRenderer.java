@@ -16,7 +16,7 @@ public class TileEntityInfuserRenderer extends TileEntitySpecialRenderer<TileEnt
         GlStateManager.pushMatrix();
 
         float f0 = te.tickCount + partialTicks;
-        float f1 = te.bookRotation;
+        float f1 = te.staffRotation  + partialTicks / 60;
 
         GlStateManager.translate(x + 0.5F, y + MathHelper.sin(f0 * 0.125F) * 0.0625F + 1.25F, z + 0.5F);
         GlStateManager.rotate(-f1 * (180F / (float)Math.PI), 0.0F, 1.0F, 0.0F);

@@ -24,7 +24,7 @@ public class TileEntityInfuser extends TileEntity implements ITickable {
     public int tickCount;
 
     public float tRot;
-    public float bookRotation;
+    public float staffRotation;
 
     /**
      * Returns if the tile entity has a custom name.
@@ -92,12 +92,12 @@ public class TileEntityInfuser extends TileEntity implements ITickable {
     public void update() {
         ++this.tickCount;
 
-        while(this.bookRotation >= (float)Math.PI) {
-            this.bookRotation -= ((float)Math.PI * 2F);
+        while(this.staffRotation >= (float)Math.PI) {
+            this.staffRotation -= ((float)Math.PI * 2F);
         }
 
-        while(this.bookRotation < -(float)Math.PI) {
-            this.bookRotation += ((float)Math.PI * 2F);
+        while(this.staffRotation < -(float)Math.PI) {
+            this.staffRotation += ((float)Math.PI * 2F);
         }
 
         this.tRot += 0.02F;
@@ -110,7 +110,7 @@ public class TileEntityInfuser extends TileEntity implements ITickable {
             this.tRot += ((float)Math.PI * 2F);
         }
 
-        float f2 = this.tRot - this.bookRotation;
+        float f2 = this.tRot - this.staffRotation;
 
         while(f2 >= (float)Math.PI) {
             f2 -= ((float)Math.PI * 2F);
@@ -120,6 +120,6 @@ public class TileEntityInfuser extends TileEntity implements ITickable {
             f2 += ((float)Math.PI * 2F);
         }
 
-        this.bookRotation += f2 * 0.4F;
+        this.staffRotation += f2 * 0.4F;
     }
 }
