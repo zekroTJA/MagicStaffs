@@ -1,0 +1,31 @@
+{
+    "display": {
+        "title": {
+            "translate": "advancement.magicstaffs.toxic_staff.name"
+        },
+        "description": {
+            "translate": "advancement.magicstaffs.toxic_staff.desc"
+        },
+        "icon": {
+            "item": "magicstaffs:toxic_staff"
+        },
+        "frame": "goal",
+        "show_toast": true,
+        "announce_to_chat": true,
+        "hidden": false,
+        "background": "minecraft:textures/blocks/obsidian.png"
+    },
+    "criteria": {
+        "white": {
+            "trigger": "minecraft:inventory_changed",
+            "conditions": {
+                "items": [
+                    {
+                        "item": "magicstaffs:toxic_staff"
+                    }
+                ]
+            }
+        }
+    },
+    "parent": "magicstaffs:magicstaffs/infuser"
+}
