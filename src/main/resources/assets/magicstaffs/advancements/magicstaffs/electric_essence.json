@@ -1,0 +1,31 @@
+{
+    "display": {
+        "title": {
+            "translate": "advancement.magicstaffs.electric_essence.name"
+        },
+        "description": {
+            "translate": "advancement.magicstaffs.electric_essence.desc"
+        },
+        "icon": {
+            "item": "magicstaffs:electric_essence"
+        },
+        "frame": "task",
+        "show_toast": true,
+        "announce_to_chat": true,
+        "hidden": false,
+        "background": "minecraft:textures/blocks/obsidian.png"
+    },
+    "criteria": {
+        "white": {
+            "trigger": "minecraft:inventory_changed",
+            "conditions": {
+                "items": [
+                    {
+                        "item": "magicstaffs:electric_essence"
+                    }
+                ]
+            }
+        }
+    },
+    "parent": "magicstaffs:magicstaffs/root"
+}
