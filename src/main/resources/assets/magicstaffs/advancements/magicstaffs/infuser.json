@@ -1,0 +1,31 @@
+{
+    "display": {
+        "title": {
+            "translate": "advancement.magicstaffs.infuser.name"
+        },
+        "description": {
+            "translate": "advancement.magicstaffs.infuser.desc"
+        },
+        "icon": {
+            "item": "magicstaffs:infuser"
+        },
+        "frame": "task",
+        "show_toast": true,
+        "announce_to_chat": true,
+        "hidden": false,
+        "background": "minecraft:textures/blocks/obsidian.png"
+    },
+    "criteria": {
+        "white": {
+            "trigger": "minecraft:inventory_changed",
+            "conditions": {
+                "items": [
+                    {
+                        "item": "magicstaffs:infuser"
+                    }
+                ]
+            }
+        }
+    },
+    "parent": "magicstaffs:magicstaffs/magic_essence"
+}

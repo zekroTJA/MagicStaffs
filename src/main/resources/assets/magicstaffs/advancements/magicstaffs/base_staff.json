@@ -1,0 +1,31 @@
+{
+    "display": {
+        "title": {
+            "translate": "advancement.magicstaffs.base_staff.name"
+        },
+        "description": {
+            "translate": "advancement.magicstaffs.base_staff.desc"
+        },
+        "icon": {
+            "item": "magicstaffs:base_staff"
+        },
+        "frame": "task",
+        "show_toast": true,
+        "announce_to_chat": true,
+        "hidden": false,
+        "background": "minecraft:textures/blocks/obsidian.png"
+    },
+    "criteria": {
+        "white": {
+            "trigger": "minecraft:inventory_changed",
+            "conditions": {
+                "items": [
+                    {
+                        "item": "magicstaffs:base_staff"
+                    }
+                ]
+            }
+        }
+    },
+    "parent": "magicstaffs:magicstaffs/root"
+}

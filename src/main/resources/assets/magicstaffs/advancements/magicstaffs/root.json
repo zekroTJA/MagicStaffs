@@ -1,0 +1,23 @@
+{
+    "display": {
+        "title": {
+            "translate": "advancement.magicstaffs.root.name"
+        },
+        "description": {
+            "translate": "advancement.magicstaffs.root.desc"
+        },
+        "icon": {
+            "item": "magicstaffs:electric_staff"
+        },
+        "frame": "task",
+        "show_toast": false,
+        "announce_to_chat": false,
+        "hidden": false,
+        "background": "minecraft:textures/blocks/obsidian.png"
+    },
+    "criteria": {
+        "tick": {
+            "trigger": "minecraft:tick"
+        }
+    }
+}
